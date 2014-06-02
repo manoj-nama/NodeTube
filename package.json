@@ -1,0 +1,24 @@
+{
+  "name": "video-tester",
+  "version": "0.0.0",
+  "description": "An Experimental Video Converter using NodeJS",
+  "main": "app.js",
+  "dependencies": {
+    "fluent-ffmpeg": "~1.7.1"
+  },
+  "devDependencies": {},
+  "scripts": {
+    "start": "node app.js",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git://github.com/manoj-nama/video-converter.git"
+  },
+  "author": "Manoj Nama",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/manoj-nama/video-converter/issues"
+  },
+  "homepage": "https://github.com/manoj-nama/video-converter"
+}
