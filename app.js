@@ -1,6 +1,9 @@
 var ffmpeg = require("fluent-ffmpeg");
 var meta = ffmpeg.Metadata;
 var inputFile = "test.avi";
+
+var convertedWidth = "?";
+var convertedHeight = "480";
  
 meta(inputFile, function(data) {
     console.log(data.video);
@@ -11,7 +14,7 @@ meta(inputFile, function(data) {
 
     console.time("ST");
 
-    ff.withSize("?x720")
+    ff.withSize(convertedWidth + "x" + convertedHeight)
     .withVideoBitrate(data.video.bitrate)
     .withVideoCodec('mpeg4')
     .withAudioBitrate('128k')
