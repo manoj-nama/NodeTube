@@ -4,7 +4,10 @@
   "description": "An Experimental Video Converter using NodeJS",
   "main": "app.js",
   "dependencies": {
-    "fluent-ffmpeg": "~1.7.1"
+    "fluent-ffmpeg": "~1.7.1",
+    "express": "*",
+    "morgan": "^1.1.1",
+    "body-parser": "^1.3.0"
   },
   "devDependencies": {},
   "scripts": {
