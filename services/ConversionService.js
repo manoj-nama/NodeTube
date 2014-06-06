@@ -1,3 +1,4 @@
+var ffmpeg = require("fluent-ffmpeg");
 // var meta = ffmpeg.Metadata;
 // var inputFile = "test.avi";
 

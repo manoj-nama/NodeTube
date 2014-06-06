@@ -1,7 +1,5 @@
-// var ffmpeg = require("fluent-ffmpeg");
-
 var express = require('express');
-// var appRouter = require("./config/URLMappings");
+var appRouter = require("./config/URLMappings");
 var logger = require("morgan");
 var AppBuilder = require("./custom_modules/AppBuilder");
 var bodyParser = require("body-parser");
@@ -18,8 +16,7 @@ GLOBAL._appBaseDir = __dirname;
 
 AppBuilder.initServices();
 
-// appRouter.addRoutes(app);
-
+appRouter.addRoutes(app);
 
 app.use(express.static(__dirname + '/public'));
 
