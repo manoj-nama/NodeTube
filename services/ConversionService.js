@@ -9,7 +9,7 @@ exports.convert = function (options) {
 	var convertedHeight = options.convertedHeight || "480";
 
 	var inputFileName = crypto.createHash('SHA').update(inputFile + (+new Date())).digest('hex');
-	inputFileName+= options.toFormat || "mp4";
+	inputFileName+= ("." + options.toFormat || "mp4");
 	 
 	meta(inputFile, function(data) {
 		var size = data.video.resolution.w + "x" + data.video.resolution.h;
