@@ -7,6 +7,9 @@ exports.convert = function (options) {
 
 	var convertedWidth = options.convertedWidth || "?";
 	var convertedHeight = options.convertedHeight || "480";
+
+	var inputFileName = crypto.createHash('SHA').update(inputFile + (+new Date())).digest('hex');
+	inputFileName+= options.toFormat || "mp4";
 	 
 	meta(inputFile, function(data) {
 		var size = data.video.resolution.w + "x" + data.video.resolution.h;
@@ -40,7 +43,7 @@ exports.convert = function (options) {
 			console.log();
 			console.log(options.inputFile, 'Conversion Successful.');
 		})
-		.saveToFile(_appBaseDir + "/conversion/targetFile.mp4")
+		.saveToFile(_appBaseDir + "/conversion/" + inputFileName)
 	});
 }
 
