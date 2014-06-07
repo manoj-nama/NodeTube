@@ -3,12 +3,15 @@
 <head>
 	<meta charset="UTF-8">
 	<title>Node-Converter</title>
+	<link href='http://fonts.googleapis.com/css?family=Oswald:400,700,300|Gentium+Basic:400,700,400italic,700italic|Lato:300,400' rel='stylesheet' type='text/css'>
+	<link rel="stylesheet" href="/css/common.css">
 </head>
 <body data-ng-app="VideoApp" data-ng-controller="MasterController">
-	<h1>Welcome to Node-Converter</h1>
-	<p>A Node video conversion utility</p>
+	<header>
+		<h1>Node<span>Converter</span></h1>
+	</header>
 
-	<div data-ng-view=""></div>
+	<div id="content" data-ng-view=""></div>
 
 	<script src="/js/jquery.js"></script>
 	<script src="/js/angular.min.js"></script>

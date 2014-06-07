@@ -16,3 +16,42 @@ table, caption, tbody, tfoot, thead, tr, th, td {
     background: transparent;
 }
 a{ text-decoration:none; }
+
+/* >>> COMMON <<<--------------------------- */
+body { background-color: #eee; }
+header {
+	padding: 20px 0;
+	/*background-color: #f5f5f5;*/
+	border-bottom: 1px solid #eee;
+	/*box-shadow: 0px -2px 10px #e5e5e5 inset;*/
+}
+header h1 { font-family: "Lato",serif; font-weight: 400; text-align: center; color: #ccc;}
+header h1 span { font-weight: 300;}
+
+/* >>> ELEMENTS <<<--------------------------- */
+#content {
+	max-width: 800px; 
+	margin: 0 auto;
+}
+
+#content form { margin-top: 40px; text-align: center;}
+form label {
+	display: block;
+	font-family: "Oswald", sans-serif;
+	font-weight: 300;
+	font-size: 2em;
+}
+#videoFile { opacity: 0;}
+
+#videoLabel {
+	transition: all 0.5s;
+	background-color: #fff;
+	border-bottom: 4px solid #ddd;
+	cursor: pointer;
+	padding: 20px;
+}
+#videoLabel:hover {
+	color: #fff;
+	border-color: #08d;
+	background-color: #0ad;
+}
