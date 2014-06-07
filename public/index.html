@@ -4,8 +4,16 @@
 	<meta charset="UTF-8">
 	<title>Node-Converter</title>
 </head>
-<body>
+<body data-ng-app="VideoApp" data-ng-controller="MasterController">
 	<h1>Welcome to Node-Converter</h1>
 	<p>A Node video conversion utility</p>
+
+	<div data-ng-view=""></div>
+
+	<script src="/js/jquery.js"></script>
+	<script src="/js/angular.min.js"></script>
+	<script src="/js/angular-route.min.js"></script>
+	<script src="/js/controllers.js"></script>
+	<script src="/js/app.js"></script>
 </body>
 </html>
