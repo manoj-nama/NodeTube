@@ -1,10 +1,13 @@
 <form action="">
 	<label for="videoFile" id="videoLabel">Choose a video</label>
-	<input type="file" name="videoFile" id="videoFile">
+	<input type="file" name="videoFile" id="videoFile" data-file-model="chosenFile">
 
 
 
 	<p>
 		{{chosenFile | json}}
 	</p>
+
+    <br><br>
+	<span ng-click="uploadFile()">Upload File ...</span>
 </form>

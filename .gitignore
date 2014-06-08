@@ -2,3 +2,4 @@ node_modules/
 frames/*
 conversions/*
 test_videos/
+.idea/

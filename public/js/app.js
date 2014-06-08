@@ -1,4 +1,4 @@
-var VideoApp = angular.module("VideoApp", ["ngRoute"]);
+var VideoApp = angular.module("VideoApp", ["ngRoute", "VideoApp.directives"]);
 
 VideoApp.config(["$routeProvider", function ($routeProvider) {
 	$routeProvider

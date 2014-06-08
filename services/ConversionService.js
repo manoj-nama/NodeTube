@@ -2,6 +2,7 @@ var ffmpeg = require("fluent-ffmpeg");
 var crypto = require('crypto');
 
 exports.convert = function (options) {
+	var emitter = this;
 	var meta = ffmpeg.Metadata;
 	var inputFile = options.inputFile;
 
@@ -28,6 +29,7 @@ exports.convert = function (options) {
 		})
 		.on('error', function(err) {
 			console.log('An error occurred: ' + err.message);
+			emitter.emit("ERROR", err);
 		})
 		.on('codecData', function(data) {
 			console.log('Codec: ', data);
@@ -42,26 +44,37 @@ exports.convert = function (options) {
 		.on('end', function(filenames) {
 			console.log();
 			console.log(options.inputFile, 'Conversion Successful.');
+			emitter.emit("DONE", filenames);
 		})
-		.saveToFile(_appBaseDir + "/conversion/" + inputFileName)
+		.saveToFile(_appBaseDir  + _config.common.conversion.mediaPath + inputFileName)
 	});
-}
+}.toEmitter();
 
-exports.getSnapshots = function (inputFile, count, timemarks) {
+exports.getSnapshots = function (inputFile, count, timemarks, outputFileNaming) {
+	var emitter = this;
+
 	var ff = new ffmpeg({source: inputFile});
-	ff.on('start', function () {
+
+	ff.withSize("360x240")
+	.on('start', function () {
 		console.log("Starting snapshots");
 	})
-	.on('end', function () {
-		console.log("Successfully taken snapshots");
+	.on('end', function (filenames) {
+		console.log("Successfully taken snapshots", filenames.join(", "));
+		emitter.emit("DONE", filenames);
+	})
+	.on('error', function(err) {
+		console.log('An error occurred: ' + err.message);
+		emitter.emit("ERROR", err);
 	})
 	.takeScreenshots(
 		{
 		   count: count,
 		   timemarks: timemarks,
-		   filename: '%b-thumbnail-%i-%r'
+		   filename: outputFileNaming + '-%i'
 		},
-      _appBaseDir + '/frames'
+      _appBaseDir + _config.common.conversion.framesPath
 	);
-}
+
+}.toEmitter();
 

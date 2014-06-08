@@ -3,12 +3,14 @@ var appRouter = require("./config/URLMappings");
 var logger = require("morgan");
 var AppBuilder = require("./custom_modules/AppBuilder");
 var bodyParser = require("body-parser");
+var multipart = require('connect-multiparty')();
 
 var config = require("./config/Config.json");
 
 var app = express();
 app.use(logger('dev'));
 app.use(bodyParser());
+app.use(multipart);
 app.use(AppBuilder.apiHelperToolInjectionMiddleware);
 
 GLOBAL._config = config;

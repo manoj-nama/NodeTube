@@ -1,5 +1,8 @@
 {
 	"common": {
-		
+		"conversion": {
+			"framesPath": "/frames/",
+			"mediaPath": "/conversions/"
+		}
 	}
 }
