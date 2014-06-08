@@ -1,5 +1,5 @@
 <form action="">
-	<label for="videoFile" id="videoLabel">Choose a video</label>
+	<label for="videoFile" id="videoLabel" ng-disabled="true">Choose a video</label>
 	<input type="file" name="videoFile" id="videoFile" data-file-model="chosenFile">
 
 	<div class="details" data-ng-show="!!chosenFile">
@@ -9,5 +9,9 @@
 	</div>
 
 	<br><br>
-	<button class="button" data-ng-show="!!chosenFile" data-ng-click="uploadFile($)">Upload File</button>
+	<button class="button {{isUploadingFile && 'loading' || ''}}" data-ng-show="!!chosenFile" data-ng-click="!isUploadingFile && uploadFile()">
+		<span data-ng-show="isUploadingFile">Uploading ..</span>
+		<span data-ng-hide="isUploadingFile">Upload file</span>
+		<span class="loader right" data-ng-show="isUploadingFile"></span>
+	</button>
 </form>

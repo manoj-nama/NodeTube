@@ -14,6 +14,7 @@ function HomeController ($scope, $location, $rootScope) {
 			if(resp.status === 200) {
 				$scope.$apply(function () {
 					$rootScope.media = resp.fileId;
+					$scope.isUploadingFile = false;
 					$location.path("/convert/options/" + resp.fileId);
 				});
 			}
@@ -27,6 +28,7 @@ function HomeController ($scope, $location, $rootScope) {
 
 		xhr.open("POST", "/media/upload");
 		xhr.send(fd);
+		$scope.isUploadingFile = true;
 	}
 }
 

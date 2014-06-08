@@ -61,15 +61,17 @@ form label {
 /* >>> CLASSES <<<--------------------------- */
 .button {
 	background-color: #08d; color: #fff;
+	outline: none;
 	padding: 10px 15px; border: 0;
 	transition: all 0.5s;
 	border-bottom: 4px solid #0ad;
 	font-size: 1.3em; font-weight: 400;
 	font-family: 'Oswald', sans-serif;
-	cursor: pointer;
+	cursor: pointer; overflow: auto;
+	
 }
-
-.button:hover {
+.button.loading {min-width: 180px;}
+.button:hover, .button.loading {
 	background-color: #fff; color: #333;
 	border-bottom: 4px solid #ddd;
 }
@@ -89,3 +91,10 @@ form label {
 	color: #333;
 	float: left; font-size: 1.4em; font-family: "Oswald", sans-serif;	
 }
+
+.button span { float: left;}
+span.loader {
+	background: url("/img/loader.gif") no-repeat center center;
+	width: 24px; height: 24px;	display: block; margin-top: 5px;
+}
+span.loader.right { float: right;}
