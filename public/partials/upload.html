@@ -2,12 +2,12 @@
 	<label for="videoFile" id="videoLabel">Choose a video</label>
 	<input type="file" name="videoFile" id="videoFile" data-file-model="chosenFile">
 
+	<div class="details" data-ng-show="!!chosenFile">
+		<div class="row"><span class="key">File</span><span class="value">{{chosenFile.name}}</span></div>
+		<div class="row"><span class="key">Size</span><span class="value">{{(chosenFile.size / 1024) | number:0}} Kb(s)</span></div>
+		<div class="row"><span class="key">Type</span><span class="value">{{chosenFile.type}}</span></div>
+	</div>
 
-
-	<p>
-		{{chosenFile | json}}
-	</p>
-
-    <br><br>
+	<br><br>
 	<button class="button" data-ng-show="!!chosenFile" data-ng-click="uploadFile($)">Upload File</button>
 </form>
