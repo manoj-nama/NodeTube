@@ -50,12 +50,12 @@ exports.convert = function (options) {
 	});
 }.toEmitter();
 
-exports.getSnapshots = function (inputFile, count, timemarks, outputFileNaming) {
+exports.getSnapshots = function (options) {
 	var emitter = this;
 
-	var ff = new ffmpeg({source: inputFile});
+	var ff = new ffmpeg({source: options.inputFile});
 
-	ff.withSize("360x240")
+	ff.withSize(options.size || "480x?")
 	.on('start', function () {
 		console.log("Starting snapshots");
 	})
@@ -69,9 +69,9 @@ exports.getSnapshots = function (inputFile, count, timemarks, outputFileNaming) 
 	})
 	.takeScreenshots(
 		{
-		   count: count,
-		   timemarks: timemarks,
-		   filename: outputFileNaming + '-%i'
+		   count: options.count,
+		   timemarks: options.timemarks,
+		   filename: options.outputFileNaming + '-%i'
 		},
       _appBaseDir + _config.common.conversion.framesPath
 	);

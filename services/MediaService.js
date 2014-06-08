@@ -10,7 +10,14 @@ exports.uploadMedia = function (file) {
 			var fname = fileNameToSend + file.media.originalFilename.replace(/(.*)(\..+)/, function(a, b, c) { return c; });
 			fs.writeFile(mediaPath + fname, data, function (err, resp) {
 				if(!err) {
-					ConversionService.getSnapshots(mediaPath + fname, 1, ['10'], fileNameToSend + "_cover")
+					var options = {
+						inputFile: mediaPath + fname,
+						count: 1,
+						timemarks: ["5"],
+						outputFileNaming: fileNameToSend + "_cover",
+						size: "480x?"
+					};
+					ConversionService.getSnapshots(options)
 						.on("DONE", function (snaps) {
 							emitter.emit("DONE", {fileName: fname, screens: snaps});
 						})
