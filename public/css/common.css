@@ -56,7 +56,13 @@ form label {
 	border-color: #08d;
 	background-color: #0ad;
 }
-
+#error{
+  height: 50px;
+  background: rgb(231, 119, 132);
+  font-family: oswald; 
+  color: white;
+  font-size: x-large;
+}
 
 /* >>> CLASSES <<<--------------------------- */
 .button {

@@ -1,9 +1,7 @@
 <form action="">
 	<label for="videoFile" id="videoLabel">Choose a video</label>
 	<input type="file" name="videoFile" id="videoFile" data-file-model="chosenFile">
-
-
-
+  <div ng-show="fileUpload.error" id='error'>{{fileUpload.message}}</div>
 	<p>
 		{{chosenFile | json}}
 	</p>
