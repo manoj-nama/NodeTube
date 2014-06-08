@@ -6,5 +6,7 @@ var controllers = {
 
 exports.addRoutes = function (app) {
 	app.get("/home", controllers.HomeController.index);
+	app.get("/media/cover/:id", controllers.MediaController.cover);
+	
 	app.post("/media/upload", controllers.MediaController.uploadMedia);
 }

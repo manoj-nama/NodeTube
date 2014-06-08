@@ -9,8 +9,14 @@ function HomeController ($scope, $location, $rootScope) {
 
 		var xhr = new XMLHttpRequest();
 
-		xhr.upload.onload = function (e) {
-			console.log("File uploaded", e);
+		xhr.onload = function (e) {
+			var resp = JSON.parse(xhr.responseText);
+			if(resp.status === 200) {
+				$scope.$apply(function () {
+					$rootScope.media = resp.fileId;
+					$location.path("/convert/options/" + resp.fileId);
+				});
+			}
 		};
 		xhr.upload.onprogress = function (e) {
 			console.log((e.loaded / e.total) * 100, "%");
@@ -24,10 +30,11 @@ function HomeController ($scope, $location, $rootScope) {
 	}
 }
 
-function VideoConfigController ($scope, $location, $rootScope) {
-		
+function VideoConfigController ($scope, $location, $rootScope, $routeParams) {
+	$scope.media = $routeParams.id || $rootScope.media;
+	$scope.mediaCover = "/media/cover/" + $scope.media;
 }
 
 MasterController.$inject = ["$scope", "$location", "$rootScope"];
 HomeController.$inject = ["$scope", "$location", "$rootScope"];
-VideoConfigController.$inject = ["$scope", "$location", "$rootScope"];
+VideoConfigController.$inject = ["$scope", "$location", "$rootScope", "$routeParams"];

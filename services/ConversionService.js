@@ -71,7 +71,7 @@ exports.getSnapshots = function (options) {
 		{
 		   count: options.count,
 		   timemarks: options.timemarks,
-		   filename: options.outputFileNaming + '-%i'
+		   filename: options.outputFileNaming
 		},
       _appBaseDir + _config.common.conversion.framesPath
 	);

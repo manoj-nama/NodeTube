@@ -7,7 +7,7 @@ exports.uploadMedia = function (file) {
 	if(file) {
 		fs.readFile(file.media.path, function (err, data) {
 			var fileNameToSend = crypto.createHash('SHA').update(file.media.originalFilename + (+new Date())).digest('hex');
-			var fname = fileNameToSend + file.media.originalFilename.replace(/(.*)(\..+)/, function(a, b, c) { return c; });
+			var fname = fileNameToSend;// + file.media.originalFilename.replace(/(.*)(\..+)/, function(a, b, c) { return c; });
 			fs.writeFile(mediaPath + fname, data, function (err, resp) {
 				if(!err) {
 					var options = {
@@ -19,10 +19,9 @@ exports.uploadMedia = function (file) {
 					};
 					ConversionService.getSnapshots(options)
 						.on("DONE", function (snaps) {
-							emitter.emit("DONE", {fileName: fname, screens: snaps});
+							emitter.emit("DONE", {fileId: fileNameToSend});
 						})
 						.on("ERROR", function(err) {
-							console.log(">>>>>>>>>>>>", err)
 							emitter.emit("ERROR", "Cannot get Snaps");		
 						});
 				} else {

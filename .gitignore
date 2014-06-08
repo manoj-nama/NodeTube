@@ -3,3 +3,4 @@ frames/*
 conversions/*
 test_videos/
 .idea/
+npm-debug.log

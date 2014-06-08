@@ -11,3 +11,8 @@ exports.uploadMedia = function (req, res) {
 			req.files = {};
 		});
 }
+
+exports.cover = function (req, res) {
+	console.log(req.params);
+	res.sendfile(_appBaseDir + _config.common.conversion.framesPath + req.params.id + "_cover.jpg");
+};
