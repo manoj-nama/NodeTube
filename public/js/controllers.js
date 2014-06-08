@@ -3,8 +3,16 @@ function MasterController ($scope, $location, $rootScope) {
 }
 
 function HomeController ($scope, $location, $rootScope) {
+	$scope.fileUpload={error:false,message:""};
+	$rootScope.$on('removeError',function(){
+		if($scope.fileUpload.error){
+			$scope.fileUpload.error=false;
+			$scope.fileUpload.message="";
+		}
+	});
 	$scope.uploadFile = function () {
-		var fd = new FormData();
+	if(/video\/.*/ig.test($scope.chosenFile.type)){
+					var fd = new FormData();
 		fd.append("media", $scope.chosenFile);
 
 		var xhr = new XMLHttpRequest();
@@ -26,14 +34,21 @@ function HomeController ($scope, $location, $rootScope) {
 		}
 
 		xhr.open("POST", "/media/upload");
-		xhr.send(fd);
+			xhr.send(fd);
 	}
+  else{
+			$scope.fileUpload.error=true;
+			$scope.fileUpload.message="Please upload video files only";
+	}
+}
+
 }
 
 function VideoConfigController ($scope, $location, $rootScope, $routeParams) {
 	$scope.media = $routeParams.id || $rootScope.media;
 	$scope.mediaCover = "/media/cover/" + $scope.media;
 }
+
 
 MasterController.$inject = ["$scope", "$location", "$rootScope"];
 HomeController.$inject = ["$scope", "$location", "$rootScope"];
