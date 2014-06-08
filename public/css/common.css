@@ -21,12 +21,12 @@ a{ text-decoration:none; }
 body { background-color: #eee; }
 header {
 	padding: 20px 0;
-	/*background-color: #f5f5f5;*/
 	border-bottom: 1px solid #eee;
-	/*box-shadow: 0px -2px 10px #e5e5e5 inset;*/
 }
 h1, h2, h3, h4, h5, h6 { font-family: 'Lato', sans-serif; font-weight: 300; }
-header h1 { font-family: "Lato",serif; font-weight: 400; text-align: center; color: #ccc;}
+header a { color: #ccc; }
+header h1 { font-family: "Lato",serif; font-weight: 400; text-align: center; color: #ccc; transition: all 0.5s;}
+header h1:hover { color: #333; }
 header h1 span { font-weight: 300;}
 
 /* >>> ELEMENTS <<<--------------------------- */
@@ -65,10 +65,48 @@ form label {
 }
 
 /* >>> CLASSES <<<--------------------------- */
+.progress {
+	position: fixed;
+	height: 3px;
+	background-color: #09f;
+	box-shadow: 0px 0px 10px #05f;
+}
 .button {
 	background-color: #08d; color: #fff;
+	outline: none;
 	padding: 10px 15px; border: 0;
+	transition: all 0.5s;
+	border-bottom: 4px solid #0ad;
 	font-size: 1.3em; font-weight: 400;
 	font-family: 'Oswald', sans-serif;
-	cursor: pointer;
+	cursor: pointer; overflow: auto;
+	
 }
+.button.loading {min-width: 180px;}
+.button:hover, .button.loading {
+	background-color: #fff; color: #333;
+	border-bottom: 4px solid #ddd;
+}
+
+.details { 
+	text-align: left; overflow: auto; min-height: 150px;
+	border-bottom: 1px solid #ddd;
+}
+.details .row { overflow: auto; padding: 10px; }
+.details span.key {
+	margin-top: 3px;
+	display: inline-block; min-width: 150px; color: #555;
+	float: left; font-size: 1.25em; font-family: "Lato", sans-serif;
+}
+.details span.value {
+	display: inline-block; min-width: 500px;
+	color: #333;
+	float: left; font-size: 1.4em; font-family: "Oswald", sans-serif;	
+}
+
+.button span { float: left;}
+span.loader {
+	background: url("/img/loader.gif") no-repeat center center;
+	width: 24px; height: 24px;	display: block; margin-top: 5px;
+}
+span.loader.right { float: right;}

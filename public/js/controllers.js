@@ -22,12 +22,15 @@ function HomeController ($scope, $location, $rootScope) {
 			if(resp.status === 200) {
 				$scope.$apply(function () {
 					$rootScope.media = resp.fileId;
+					$scope.isUploadingFile = false;
+					$rootScope.uploadProgress = 0;
 					$location.path("/convert/options/" + resp.fileId);
 				});
 			}
 		};
 		xhr.upload.onprogress = function (e) {
-			console.log((e.loaded / e.total) * 100, "%");
+			$rootScope.uploadProgress = (e.loaded / e.total) * 100;
+			$scope.$apply();
 		};
 		xhr.upload.onerror = function (e) {
 			console.log("Error uploading file");
@@ -35,6 +38,7 @@ function HomeController ($scope, $location, $rootScope) {
 
 		xhr.open("POST", "/media/upload");
 			xhr.send(fd);
+		$scope.isUploadingFile = true;
 	}
   else{
 			$scope.fileUpload.error=true;
