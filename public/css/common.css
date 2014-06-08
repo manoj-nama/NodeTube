@@ -59,6 +59,12 @@ form label {
 
 
 /* >>> CLASSES <<<--------------------------- */
+.progress {
+	position: fixed;
+	height: 3px;
+	background-color: #09f;
+	box-shadow: 0px 0px 10px #05f;
+}
 .button {
 	background-color: #08d; color: #fff;
 	outline: none;
