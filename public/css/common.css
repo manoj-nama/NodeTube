@@ -56,3 +56,13 @@ form label {
 	border-color: #08d;
 	background-color: #0ad;
 }
+
+
+/* >>> CLASSES <<<--------------------------- */
+.button {
+	background-color: #08d; color: #fff;
+	padding: 10px 15px; border: 0;
+	font-size: 1.3em; font-weight: 400;
+	font-family: 'Oswald', sans-serif;
+	cursor: pointer;
+}
