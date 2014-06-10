@@ -12,7 +12,7 @@ function HomeController ($scope, $location, $rootScope) {
 	});
 	$scope.uploadFile = function () {
 	if(/video\/.*/ig.test($scope.chosenFile.type)){
-					var fd = new FormData();
+		var fd = new FormData();
 		fd.append("media", $scope.chosenFile);
 
 		var xhr = new XMLHttpRequest();
@@ -37,12 +37,11 @@ function HomeController ($scope, $location, $rootScope) {
 		}
 
 		xhr.open("POST", "/media/upload");
-			xhr.send(fd);
+		xhr.send(fd);
 		$scope.isUploadingFile = true;
-	}
-  else{
-			$scope.fileUpload.error=true;
-			$scope.fileUpload.message="Please upload video files only";
+	} else {
+		$scope.fileUpload.error=true;
+		$scope.fileUpload.message="Please upload video files only";
 	}
 }
 
