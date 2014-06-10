@@ -13,7 +13,7 @@ exports.uploadMedia = function (file) {
 					var options = {
 						inputFile: mediaPath + fname,
 						count: 1,
-						timemarks: ["5"],
+						timemarks: ["10"],
 						outputFileNaming: fileNameToSend + "_cover",
 						size: "480x?"
 					};

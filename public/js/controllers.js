@@ -27,9 +27,10 @@ function HomeController ($scope, $location, $rootScope) {
 					$location.path("/convert/options/" + resp.fileId);
 				});
 			}
-		};
+		}
 		xhr.upload.onprogress = function (e) {
-			$rootScope.uploadProgress = (e.loaded / e.total) * 100;
+			var progress = (e.loaded / e.total) * 100;
+			$rootScope.uploadProgress = progress;
 			$scope.$apply();
 		};
 		xhr.upload.onerror = function (e) {
