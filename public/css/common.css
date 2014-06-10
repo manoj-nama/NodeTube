@@ -111,3 +111,10 @@ span.loader {
 	width: 24px; height: 24px;	display: block; margin-top: 5px;
 }
 span.loader.right { float: right;}
+
+
+.media {
+	text-align: center;
+	padding: 30px 0;
+	background-color: #000;
+}
