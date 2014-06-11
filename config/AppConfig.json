@@ -1,0 +1,28 @@
+{
+    "common": {
+        "port": 8888,
+        "appName": "Node Converter",
+
+        "dataSource": {
+            "mongo": {
+                "url": "mongodb://localhost:27017/node-converter",
+                "poolSize": "100",
+                "ignoreConnectionError": false
+            }
+        }
+    },
+    "development": {
+        "port": 8888,
+        "showHidden": true,
+        "serverUrl": "http://localhost:8888"
+    },
+    "production": {
+    },
+    "test": {
+    },
+    "qa": {
+    }
+}
+
+
+

@@ -1,5 +1,45 @@
 var fs = require('fs');
 var path = require('path');
+var MongoDatabaseProvider = require("./modules/MongoDatabaseProvider");
+var ConfigManager = require("./modules/ConfigManager");
+
+
+exports.initConfig = function (options) {
+    new ConfigManager(options, function (config) {
+        Object.defineProperty(global, '_config', {
+            get: function () {
+                return config;
+            }
+        });
+    });
+};
+
+//Init all database Models
+exports.initDomains = function (callback) {
+    MongoDatabaseProvider.getDatabase(function (db) {
+        Object.defineProperty(global, '_db', {
+            get: function () {
+                return db;
+            }
+        });
+        fs.readdir(path.join(_appBaseDir, "domains"), function (err, list) {
+            if (err) log.error(err);
+            else {
+                list.forEach(function (item) {
+                    var name = item.toString().replace(/\.js$/, "");
+                    var model = db.getDomain(name);
+                    model.ensureAllManuallyDefinedSchemaIndexes();
+                    Object.defineProperty(global, name, {
+                        get: function () {
+                            return model;
+                        }
+                    });
+                });
+            }
+            callback();
+        });
+    });
+};
 
 exports.initServices = function () {
     try {
