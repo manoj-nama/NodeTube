@@ -130,10 +130,16 @@ span.loader.right { float: right; }
 }
 .list .media-item img {
 	width: 200px; transition: all 0.3s;
+	-webkit-filter: grayscale(80%);
+	-moz-filter: grayscale(80%);
+	-ms-filter: grayscale(80%);
+	-o-filter: grayscale(80%);
 	filter: gray;
-	-webkit-filter: grayscale(0.8);
 }
 .list .media-item img:hover {
 	filter: none;
-	-webkit-filter: grayscale(0);	
+	-webkit-filter: grayscale(0%);
+	-moz-filter: grayscale(0%);
+	-ms-filter: grayscale(0%);
+	-o-filter: grayscale(0%);
 }
