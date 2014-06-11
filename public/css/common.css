@@ -25,7 +25,7 @@ header {
 }
 h1, h2, h3, h4, h5, h6 { font-family: 'Lato', sans-serif; font-weight: 300; }
 header a { color: #ccc; }
-header h1 { font-family: "Lato",serif; font-weight: 400; text-align: center; color: #ccc; transition: all 0.5s;}
+header h1 { font-weight: 400; text-align: center; color: #ccc; transition: all 0.5s;}
 header h1:hover { color: #333; }
 header h1 span { font-weight: 300;}
 
@@ -110,11 +110,30 @@ span.loader {
 	background: url("/img/loader.gif") no-repeat center center;
 	width: 24px; height: 24px;	display: block; margin-top: 5px;
 }
-span.loader.right { float: right;}
-
+span.loader.right { float: right; }
+.clearBottom { margin-bottom: 40px; }
+.divider {
+	color: #aaa; font-family: 'Lato', sans-serif;
+	font-weight: 300; padding: 10px 5px;
+}
 
 .media {
 	text-align: center;
 	padding: 30px 0;
 	background-color: #000;
+}
+.list { overflow: auto;}
+.list .media-item { 
+	margin: 0 5px; 
+	float: left; height: 100px; width: 190px; overflow: hidden; 
+	margin-bottom: 10px;
+}
+.list .media-item img {
+	width: 200px; transition: all 0.3s;
+	filter: gray;
+	-webkit-filter: grayscale(0.8);
+}
+.list .media-item img:hover {
+	filter: none;
+	-webkit-filter: grayscale(0);	
 }

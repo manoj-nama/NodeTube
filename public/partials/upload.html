@@ -15,4 +15,16 @@
 		<span data-ng-hide="isUploadingFile">Upload file</span>
 		<span class="loader right" data-ng-show="isUploadingFile"></span>
 	</button>
+	<div class="clearBottom" data-ng-show="!!chosenFile"></div>
 </form>
+
+<div class="divider" data-ng-show="mediaList.length">
+	<h2>Public videos</h2>
+</div>
+<div class="list">
+	<div class="media-item" data-ng-repeat="media in mediaList">
+		<a ng-href="#/convert/options/{{media.mediaId}}">
+			<img ng-src="/media/cover/{{media.mediaId}}">
+		</a>
+	</div>
+</div>

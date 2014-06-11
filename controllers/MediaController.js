@@ -13,6 +13,17 @@ exports.uploadMedia = function (req, res) {
 }
 
 exports.cover = function (req, res) {
-	console.log(req.params);
 	res.sendfile(_appBaseDir + _config.conversion.framesPath + req.params.id + "_cover.jpg");
+};
+
+exports.list = function (req, res) {
+	var query = req.body.query || {};
+	var projection = req.body.projection || {};
+	MediaService.list(req.body.skip, req.body.limit, query, projection)
+		.on("ERROR", function (err) {
+			res.sendErrorResponse(err);
+		})
+		.on("DONE", function (resp) {
+			res.sendSuccessResponse(resp);
+		});
 };

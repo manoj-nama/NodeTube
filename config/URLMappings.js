@@ -9,4 +9,5 @@ exports.addRoutes = function (app) {
 	app.get("/media/cover/:id", controllers.MediaController.cover);
 	
 	app.post("/media/upload", controllers.MediaController.uploadMedia);
+	app.post("/media/list", controllers.MediaController.list);
 }
