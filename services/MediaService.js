@@ -19,10 +19,19 @@ exports.uploadMedia = function (file) {
 					};
 					ConversionService.getSnapshots(options)
 						.on("DONE", function (snaps) {
-							emitter.emit("DONE", {fileId: fileNameToSend});
+							var m = new Media({
+								mediaId: fileNameToSend,
+								timestampAdded: +new Date()
+							}).save(function(err, resp) {
+								if(err) {
+									emitter.emit("ERROR", "Could not save Media");
+								} else {
+									emitter.emit("DONE", {fileId: fileNameToSend});
+								}
+							});
 						})
 						.on("ERROR", function(err) {
-							emitter.emit("ERROR", "Cannot get Snaps");		
+							emitter.emit("ERROR", "Cannot get Snaps");
 						});
 				} else {
 					emitter.emit("ERROR", "Error reading file");

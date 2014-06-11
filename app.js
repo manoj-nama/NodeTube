@@ -5,8 +5,6 @@ var AppBuilder = require("./custom_modules/AppBuilder");
 var bodyParser = require("body-parser");
 var multipart = require('connect-multiparty')();
 
-// var config = require("./config/Config.json");
-
 var app = express();
 app.use(logger('dev'));
 app.use(bodyParser());
@@ -18,16 +16,14 @@ GLOBAL.__appEnv = process.env.NODE_ENV || "development";
 
 AppBuilder.initConfig({
     postProcess: function (config) {
-        //Check if port is defined in environment then set that one.
         config.port = process.env.PORT || config.port;
         return config;
     }
 });
 
-
 AppBuilder.initDomains(function () {
 	AppBuilder.initServices();
-})
+});
 
 appRouter.addRoutes(app);
 
