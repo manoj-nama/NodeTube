@@ -46,7 +46,7 @@ exports.convert = function (options) {
 			console.log(options.inputFile, 'Conversion Successful.');
 			emitter.emit("DONE", filenames);
 		})
-		.saveToFile(_appBaseDir  + _config.common.conversion.mediaPath + inputFileName)
+		.saveToFile(_appBaseDir  + _config.conversion.mediaPath + inputFileName)
 	});
 }.toEmitter();
 
@@ -73,7 +73,7 @@ exports.getSnapshots = function (options) {
 		   timemarks: options.timemarks,
 		   filename: options.outputFileNaming
 		},
-      _appBaseDir + _config.common.conversion.framesPath
+      _appBaseDir + _config.conversion.framesPath
 	);
 
 }.toEmitter();

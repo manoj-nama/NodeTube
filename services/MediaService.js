@@ -3,7 +3,7 @@ var crypto = require('crypto');
 
 exports.uploadMedia = function (file) {
 	var emitter = this;
-	var mediaPath = _appBaseDir + _config.common.conversion.mediaPath;
+	var mediaPath = _appBaseDir + _config.conversion.mediaPath;
 	if(file) {
 		fs.readFile(file.media.path, function (err, data) {
 			var fileNameToSend = crypto.createHash('SHA').update(file.media.originalFilename + (+new Date())).digest('hex');
