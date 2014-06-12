@@ -6,3 +6,8 @@ exports.schema = {
 	dateJoined: Number,
 	lastLogin: Number
 }
+
+exports.indexes = [
+    {emailId: 1},
+    {socialId: 1}
+];
