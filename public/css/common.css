@@ -138,8 +138,8 @@ span.loader.right { float: right; }
 }
 .list .media-item img:hover {
 	filter: none;
-	-webkit-filter: brightness(100%);
-	-moz-filter: brightness(100%);
-	-ms-filter: brightness(100%);
-	-o-filter: brightness(100%);
+	-webkit-filter: brightness(120%);
+	-moz-filter: brightness(120%);
+	-ms-filter: brightness(120%);
+	-o-filter: brightness(120%);
 }
