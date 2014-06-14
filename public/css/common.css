@@ -24,13 +24,14 @@ header {
 	border-bottom: 1px solid #eee;
 }
 footer {
+	margin: 20px;
 	padding: 20px 0;
 	text-align: center;
-	border-top: 1px solid #ddd;
+	border-top: 1px solid #eee;
 }
 footer span {
 	font-family: 'Lato', sans-serif; font-weight: 400;
-	color: #444; display: block; margin: 10px 0;
+	color: #aaa; display: block; margin: 10px 0;
 }
 footer span a {
 	color: #09f; text-decoration: underline; padding: 5px; text-transform: capitalize;
@@ -143,6 +144,7 @@ span.loader.right { float: right; }
 	margin-bottom: 10px;
 }
 .list .media-item img {
+	min-height: 100px;
 	width: 200px; transition: all 0.3s;
 	-webkit-filter: brightness(50%);
 	-moz-filter: brightness(50%);

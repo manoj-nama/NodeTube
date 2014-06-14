@@ -1,4 +1,5 @@
 var fs = require('fs');
+var mkdirp = require('mkdirp');
 var crypto = require('crypto');
 
 exports.uploadMedia = function (file) {
@@ -7,21 +8,29 @@ exports.uploadMedia = function (file) {
 	if(file) {
 		fs.readFile(file.media.path, function (err, data) {
 			var fileNameToSend = crypto.createHash('SHA').update(file.media.originalFilename + (+new Date())).digest('hex');
-			var fname = fileNameToSend;// + file.media.originalFilename.replace(/(.*)(\..+)/, function(a, b, c) { return c; });
-			fs.writeFile(mediaPath + fname, data, function (err, resp) {
+
+			var outputDir = mediaPath + fileNameToSend;
+			console.log(outputDir)
+			mkdirp.sync(outputDir);
+			var fname = outputDir + "/" + fileNameToSend;
+			fs.writeFile(fname, data, function (err, resp) {
 				if(!err) {
 					var options = {
-						inputFile: mediaPath + fname,
+						inputFile: fname,
 						count: 1,
-						timemarks: ["10"],
+						timemarks: ["30"],
 						outputFileNaming: fileNameToSend + "_cover",
+						outputDir: outputDir,
 						size: "480x?"
 					};
 					ConversionService.getSnapshots(options)
 						.on("DONE", function (snaps) {
 							var m = new Media({
 								mediaId: fileNameToSend,
-								timestampAdded: +new Date()
+								timestampAdded: +new Date(),
+								metadata: {
+									title: fileNameToSend
+								}
 							}).save(function(err, resp) {
 								if(err) {
 									emitter.emit("ERROR", "Could not save Media");

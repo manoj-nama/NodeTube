@@ -73,7 +73,7 @@ exports.getSnapshots = function (options) {
 		   timemarks: options.timemarks,
 		   filename: options.outputFileNaming
 		},
-      _appBaseDir + _config.conversion.framesPath
+      	options.outputDir
 	);
 
 }.toEmitter();

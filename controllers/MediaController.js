@@ -13,7 +13,7 @@ exports.uploadMedia = function (req, res) {
 }
 
 exports.cover = function (req, res) {
-	res.sendfile(_appBaseDir + _config.conversion.framesPath + req.params.id + "_cover.jpg");
+	res.sendfile(_appBaseDir + _config.conversion.mediaPath + req.params.id + "/" + req.params.id + "_cover.jpg");
 };
 
 exports.list = function (req, res) {
