@@ -4,7 +4,8 @@ exports.schema = {
 	name: {},
 	password: String,
 	dateJoined: Number,
-	lastLogin: Number
+	lastLogin: Number,
+	roles: Array
 }
 
 exports.indexes = [

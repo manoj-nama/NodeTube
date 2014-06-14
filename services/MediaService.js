@@ -8,9 +8,7 @@ exports.uploadMedia = function (file) {
 	if(file) {
 		fs.readFile(file.media.path, function (err, data) {
 			var fileNameToSend = crypto.createHash('SHA').update(file.media.originalFilename + (+new Date())).digest('hex');
-
 			var outputDir = mediaPath + fileNameToSend;
-			console.log(outputDir)
 			mkdirp.sync(outputDir);
 			var fname = outputDir + "/" + fileNameToSend;
 			fs.writeFile(fname, data, function (err, resp) {

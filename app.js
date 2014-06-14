@@ -25,6 +25,8 @@ AppBuilder.initConfig({
 
 AppBuilder.initDomains(function () {
 	AppBuilder.initServices();
+
+	require("./config/Bootstrap.js").init();
 });
 
 appRouter.addRoutes(app);
