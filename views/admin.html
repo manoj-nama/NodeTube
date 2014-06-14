@@ -2,28 +2,22 @@
 <html lang="en">
 <head>
 	<meta charset="UTF-8">
-	<title>Node-Converter</title>
+	<title>Admin - Node-Converter</title>
 	<link href='http://fonts.googleapis.com/css?family=Oswald:400,700,300|Gentium+Basic:400,700,400italic,700italic|Lato:300,400' rel='stylesheet' type='text/css'>
 	<link rel="stylesheet" href="/css/common.css">
 </head>
-<body data-ng-app="VideoApp" data-ng-controller="MasterController">
-	<div class="progress" style="width: {{uploadProgress || 0}}%"></div>
+<body data-ng-app="VideoAdminApp" data-ng-controller="MasterController">
 	<header>
-		<a href="/"><h1>Node<span>Converter</span></h1></a>
+		<a href="/admin"><h1>Node<span>Converter</span></h1></a>
 	</header>
 
 	<div id="content" data-ng-view=""></div>
-
-	<footer>
-		<span>&copy; Manoj Nama</span>
-		<span><a href="/admin">admin</a></span>
-	</footer>
 
 	<script src="/js/jquery.js"></script>
 	<script src="/js/angular.min.js"></script>
 	<script src="/js/angular-route.min.js"></script>
 	<script src="/js/directives.js"></script>
-	<script src="/js/controllers.js"></script>
-	<script src="/js/app.js"></script>
+	<script src="/js/admin-controllers.js"></script>
+	<script src="/js/admin-app.js"></script>
 </body>
 </html>
