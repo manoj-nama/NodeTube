@@ -4,14 +4,30 @@
 	<meta charset="UTF-8">
 	<title>Admin - Node-Converter</title>
 	<link href='http://fonts.googleapis.com/css?family=Oswald:400,700,300|Gentium+Basic:400,700,400italic,700italic|Lato:300,400' rel='stylesheet' type='text/css'>
-	<link rel="stylesheet" href="/css/common.css">
+	<link rel="stylesheet" href="/css/bootstrap.min.css">
+	<link rel="stylesheet" href="/css/common-admin.css">
 </head>
 <body data-ng-app="VideoAdminApp" data-ng-controller="MasterController">
 	<header>
-		<a href="/"><h1>Node<span>Converter</span></h1></a>
+		<h2 class="section">
+			<a href="/admin/">
+				<span class="glyphicon glyphicon-flash"></span>
+				Admin<span class="light-type">App</span>
+			</a>
+		</h2>
 	</header>
 
-	<div id="content" data-ng-view=""></div>
+	<div id="content-wrap">
+		<div id="sidebar">
+			<ul>
+				<li><a href="#/media/0/10" ng-class="{active: currentPage == 'media'}"><span class="glyphicon glyphicon-play-circle"></span> <span>Media</span></a></li>
+				<li><a href="#/users/0/10" ng-class="{active: currentPage == 'users'}"><span class="glyphicon glyphicon-user"></span> <span>Users</span></a> </li>
+				<li><a href="#/settings" ng-class="{active: currentPage == 'settings'}"><span class="glyphicon glyphicon-cog"></span> <span>Settings</span></a> </li>
+			</ul>
+		</div>
+	
+		<div id="content" data-ng-view=""></div>
+	</div>
 
 	<script src="/js/jquery.js"></script>
 	<script src="/js/angular.min.js"></script>

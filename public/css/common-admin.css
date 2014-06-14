@@ -1,0 +1,86 @@
+/* >>> CSS RESET <<<--------------------------- */
+html, body, div, span, applet, object, iframe,
+h1, h2, h3, h4, h5, h6, p, blockquote, pre,
+a, abbr, acronym, address, big, cite, code,
+del, dfn, em, font, img, ins, kbd, q, s, samp,
+small, strike, strong, tt, var,
+b, u, i, center, ul,li,
+dl, dt, dd,
+fieldset, form, label, legend,
+table, caption, tbody, tfoot, thead, tr, th, td {
+    margin: 0px;
+    padding: 0px;
+    border: 0px;
+    outline: 0px;
+    vertical-align: baseline;
+    background: transparent;
+}
+a{ text-decoration:none; }
+
+/* >>> COMMON <<<--------------------------- */
+body { background-color: #eee; }
+header {
+	padding: 10px 0;
+	border-bottom: 1px solid #ddd;
+}
+footer {
+	margin: 20px;
+	padding: 20px 0;
+	text-align: center;
+	border-top: 1px solid #eee;
+}
+footer span {
+	font-family: 'Lato', sans-serif; font-weight: 400;
+	color: #aaa; display: block; margin: 10px 0;
+}
+footer span a {
+	color: #09f; text-decoration: underline; padding: 5px; text-transform: capitalize;
+}
+footer span a:hover { text-decoration: none; background-color: #09f; color: #fff;}
+h1, h2, h3, h4, h5, h6 { font-family: 'Lato', sans-serif; font-weight: 400; }
+/* >>> ELEMENTS <<<--------------------------- */
+body {
+	/*overflow-y: scroll;*/
+}
+#content-wrap {
+	overflow: auto;
+}
+#content {
+	min-height: 600px;
+	margin: 0 auto;
+	float: left;
+	overflow: auto;
+	min-width: 800px;
+}
+.section {
+	padding: 0 20px;
+}
+h2 a { color: #333;}
+h3 { font-size: 1.4em;}
+#sidebar {
+	width: 220px; min-height: 600px;
+	float: left; border-right: 1px solid #ddd;
+	font-family: "Lato", sans-serif;
+	border-bottom: 1px solid #ddd;
+}
+#sidebar ul {
+	list-style: none;
+}
+#sidebar ul li {
+	border-bottom: 1px solid #ddd;
+}
+#sidebar ul li a {
+	color: #333;
+	display: block;
+	padding: 7px 10px;
+	padding-left: 20px;
+}
+#sidebar ul li a:hover { background-color: #f5f5f5; }
+#sidebar ul li a.active, #sidebar ul li a.active:hover { background-color: #fff; }
+#sidebar ul li a span.glyphicon { margin-right: 5px; }
+
+#media {
+	padding: 10px;
+}
+/* >>> CLASSES >>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>*/
+.light-type {font-weight: 300;}
