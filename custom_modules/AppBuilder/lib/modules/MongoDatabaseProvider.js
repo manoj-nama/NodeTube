@@ -9,7 +9,7 @@ function Database(callback) {
     var mongoose = require("mongoose");
     this.connection = mongoose.createConnection(_config.dataSource.mongo.url, {poolSize: _config.dataSource.mongo.poolSize});
     this.connection.on('error', function () {
-        log.error(arguments);
+        console.log(arguments);
         if (_config.dataSource.mongo.ignoreConnectionError) callback(_this);
     });
     this.connection.once('open', function () {
@@ -32,7 +32,7 @@ function Database(callback) {
                 }
             }
             _this.connection.model(domainName, schema).ensureIndexes(function (err) {
-                if (err) log.error(err);
+                if (err) console.log(err);
             });
         };
         this.createModel = function () {
