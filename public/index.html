@@ -4,12 +4,23 @@
 	<meta charset="UTF-8">
 	<title>Node-Converter</title>
 	<link href='http://fonts.googleapis.com/css?family=Oswald:400,700,300|Gentium+Basic:400,700,400italic,700italic|Lato:300,400' rel='stylesheet' type='text/css'>
+	<link rel="stylesheet" href="/css/bootstrap.min.css">
 	<link rel="stylesheet" href="/css/common.css">
 </head>
 <body data-ng-app="VideoApp" data-ng-controller="MasterController">
 	<div class="progress" style="width: {{uploadProgress || 0}}%"></div>
+
+	<div id="drawer" class="drawer-close">
+		<div class="field section">
+			<div class="google-login login"></div>
+			<div class="fb-login login"></div>
+		</div>
+	</div>
 	<header>
-		<a href="/"><h1>Node<span>Converter</span></h1></a>
+		<h1 class="section">
+			<a href="/"><span class="logo">Node<span>Converter</span></span></a> 
+			<span class="glyphicon glyphicon-align-justify" data-ng-click="toggleMenu();"></span>
+		</h1>
 	</header>
 
 	<div id="content" data-ng-view=""></div>

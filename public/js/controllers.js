@@ -1,5 +1,7 @@
 function MasterController ($scope, $location, $rootScope) {
-	
+	$scope.toggleMenu = function () {
+		angular.element("#drawer").toggleClass("drawer-open");
+	};
 }
 
 function HomeController ($scope, $location, $rootScope, $http) {

@@ -39,18 +39,30 @@ footer span a {
 footer span a:hover { text-decoration: none; background-color: #09f; color: #fff;}
 h1, h2, h3, h4, h5, h6 { font-family: 'Lato', sans-serif; font-weight: 300; }
 header a { color: #ccc; }
-header h1 { font-weight: 400; text-align: center; color: #ccc; transition: all 0.5s;}
-header h1:hover { color: #333; }
+header h1 { font-weight: 400; text-align: center; color: #ccc;}
+header h1 span.logo { transition: all 0.5s; font-weight: 400; }
+header h1 span.logo:hover { color: #333; }
+header h1 span.glyphicon {
+	float: right; color: #aaa;
+	margin-left: -28px;
+	margin-top: 5px; cursor: pointer;
+}
+header h1 span.glyphicon:hover { color: #333;} 
 header h1 span { font-weight: 300;}
 
 /* >>> ELEMENTS <<<--------------------------- */
+body {
+	overflow-y: scroll;
+}
 #content {
 	max-width: 800px; 
-	min-height: 450px;
+	min-height: 500px;
 	margin: 0 auto;
 }
-
-#content form { margin-top: 40px; text-align: center;}
+.section {
+	max-width: 800px; margin: 0 auto;
+}
+#content form { margin-top: 20px; text-align: center;}
 form label {
 	display: block;
 	font-family: "Oswald", sans-serif;
@@ -159,3 +171,27 @@ span.loader.right { float: right; }
 	-ms-filter: brightness(120%);
 	-o-filter: brightness(120%);
 }
+
+#drawer {
+	width: 100%;
+	overflow: hidden;
+	background-color: #333;
+	box-shadow: 0px -4px 10px rgba(0,0,0,0.2) inset;
+	transition: all 0.4s;
+}
+.drawer-close { margin-top: -98px;}
+.drawer-open { margin-top: 0;}
+#drawer .field {
+	height: 100px;
+	overflow: hidden;
+}
+
+#drawer .field .login {
+	float: left; cursor: pointer;
+	transition: background 0.3s;
+	width: 200px; height: 100px;
+}
+.fb-login { background: url("/img/fb-login.png") no-repeat center center; }
+.google-login { background: url("/img/google-login.png") no-repeat center center; }
+.fb-login:hover { background-color: #3b5998; }
+.google-login:hover { background-color: #d34836; }
