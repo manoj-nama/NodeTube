@@ -23,6 +23,19 @@ header {
 	padding: 20px 0;
 	border-bottom: 1px solid #eee;
 }
+footer {
+	padding: 20px 0;
+	text-align: center;
+	border-top: 1px solid #ddd;
+}
+footer span {
+	font-family: 'Lato', sans-serif; font-weight: 400;
+	color: #444; display: block; margin: 10px 0;
+}
+footer span a {
+	color: #09f; text-decoration: underline; padding: 5px; text-transform: capitalize;
+}
+footer span a:hover { text-decoration: none; background-color: #09f; color: #fff;}
 h1, h2, h3, h4, h5, h6 { font-family: 'Lato', sans-serif; font-weight: 300; }
 header a { color: #ccc; }
 header h1 { font-weight: 400; text-align: center; color: #ccc; transition: all 0.5s;}
@@ -32,6 +45,7 @@ header h1 span { font-weight: 300;}
 /* >>> ELEMENTS <<<--------------------------- */
 #content {
 	max-width: 800px; 
+	min-height: 450px;
 	margin: 0 auto;
 }
 

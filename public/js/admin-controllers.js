@@ -3,7 +3,7 @@ function MasterController ($scope, $location, $rootScope) {
 };
 
 function AdminHomeController ($scope) {
-	console.log("MasterController");	
+	console.log("AdminHomeController");	
 };
 
 
