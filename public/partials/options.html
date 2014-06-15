@@ -1,3 +1,5 @@
 <div class="media">
-	<img data-ng-src="{{mediaCover || ''}}" alt="Media Cover Image">
+	<video controls poster="{{mediaCover || ''}}">
+		<source data-ng-src="{{mediaStreamUrl}}" type="video/mp4"/>
+	</video>
 </div>

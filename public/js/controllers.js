@@ -58,6 +58,7 @@ function HomeController ($scope, $location, $rootScope, $http) {
 function VideoConfigController ($scope, $location, $rootScope, $routeParams) {
 	$scope.media = $routeParams.id || $rootScope.media;
 	$scope.mediaCover = "/media/cover/" + $scope.media;
+	$scope.mediaStreamUrl = "/media/stream/" + $scope.media;
 }
 
 

@@ -26,7 +26,7 @@ exports.uploadMedia = function (file) {
 							var m = new Media({
 								mediaId: fileNameToSend,
 								timestampAdded: +new Date(),
-								metadata: {
+								description: {
 									title: fileNameToSend
 								}
 							}).save(function(err, resp) {

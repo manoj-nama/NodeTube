@@ -11,6 +11,7 @@ exports.addRoutes = function (app) {
 
 	app.get("/home", controllers.HomeController.index);
 	app.get("/media/cover/:id", controllers.MediaController.cover);
+	app.get("/media/stream/:id", controllers.MediaController.stream);
 	
 	app.post("/media/upload", controllers.MediaController.uploadMedia);
 	app.post("/media/list", controllers.MediaController.list);
