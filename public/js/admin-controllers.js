@@ -5,16 +5,18 @@ function MasterController ($scope, $location, $rootScope) {
 function MediaController ($scope, $location, $rootScope, $http, $routeParams) {
 	console.log("MediaController");	
 	$rootScope.currentPage = "media";
+    $rootScope.subPage = $routeParams.filter;
 };
 
 function UsersController ($scope, $location, $rootScope, $http, $routeParams) {
-	console.log("MediaController");	
+	console.log("UsersController");
 	$rootScope.currentPage = "users";
 };
 
 function SettingsController ($scope, $location, $rootScope, $http, $routeParams) {
-	console.log("MediaController");	
+	console.log("SettingsController");
 	$rootScope.currentPage = "settings";
+    $rootScope.subPage = $routeParams.subPage;
 };
 
 

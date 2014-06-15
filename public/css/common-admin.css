@@ -66,17 +66,23 @@ h3 { font-size: 1.4em;}
 #sidebar ul {
 	list-style: none;
 }
-#sidebar ul li {
+#sidebar>ul>li {
 	border-bottom: 1px solid #ddd;
 }
-#sidebar ul li a {
+#sidebar>ul li>a {
 	color: #333;
 	display: block;
 	padding: 7px 10px;
 	padding-left: 20px;
 }
-#sidebar ul li a:hover { background-color: #f5f5f5; }
-#sidebar ul li a.active, #sidebar ul li a.active:hover { background-color: #fff; }
+#sidebar ul li ul.sub-list { background-color: #777; box-shadow: 0 0 15px rgba(40,40,40,0.3) inset; }
+#sidebar ul li ul.sub-list a {color: #eee; border-left: 10px solid #555;}
+#sidebar ul li ul.sub-list a.active, #sidebar ul li ul.sub-list a.active:hover {
+    color: #fff; border-left: 10px solid #fc0;
+}
+#sidebar ul li ul.sub-list a:hover { background-color: #888; }
+#sidebar>ul>li>a:hover { background-color: #f5f5f5; }
+#sidebar>ul>li>a.active, #sidebar>ul>li>a.active:hover { background-color: #fff; }
 #sidebar ul li a span.glyphicon { margin-right: 5px; }
 
 #media {

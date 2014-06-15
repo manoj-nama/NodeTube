@@ -20,9 +20,21 @@
 	<div id="content-wrap">
 		<div id="sidebar">
 			<ul>
-				<li><a href="#/media/0/10" ng-class="{active: currentPage == 'media'}"><span class="glyphicon glyphicon-play-circle"></span> <span>Media</span></a></li>
+				<li><a href="#/media/all/0/10" ng-class="{active: currentPage == 'media'}"><span class="glyphicon glyphicon-play-circle"></span> <span>Media</span></a></li>
+                <li data-ng-show="currentPage == 'media'">
+                    <ul class="sub-list">
+                        <li><a href="#/media/all/0/10" data-ng-class="{active: subPage == 'all'}"><span class="glyphicon glyphicon-film"></span> <span>All media</span></a></li>
+                        <li><a href="#/media/conversion/0/10" data-ng-class="{active: subPage == 'conversion'}"><span class="glyphicon glyphicon-transfer"></span> <span>Conversions</span></a></li>
+                    </ul>
+                </li>
 				<li><a href="#/users/0/10" ng-class="{active: currentPage == 'users'}"><span class="glyphicon glyphicon-user"></span> <span>Users</span></a> </li>
-				<li><a href="#/settings" ng-class="{active: currentPage == 'settings'}"><span class="glyphicon glyphicon-cog"></span> <span>Settings</span></a> </li>
+				<li><a href="#/settings/config" ng-class="{active: currentPage == 'settings'}"><span class="glyphicon glyphicon-cog"></span> <span>Settings</span></a> </li>
+                <li data-ng-show="currentPage == 'settings'">
+                    <ul class="sub-list">
+                        <li><a href="#/settings/config" data-ng-class="{active: subPage == 'config'}"><span class="glyphicon glyphicon-tasks"></span> <span>Config</span></a></li>
+                        <li><a href="#/settings/appconfig" data-ng-class="{active: subPage == 'appconfig'}"><span class="glyphicon glyphicon-list-alt"></span> <span>App Config</span></a></li>
+                    </ul>
+                </li>
 			</ul>
 		</div>
 	
