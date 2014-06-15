@@ -1,5 +1,13 @@
 function MasterController ($scope, $location, $rootScope) {
 	console.log("MasterController");
+
+    setTimeout(function () {
+        var $contentEl = angular.element("#content");
+        var paddingCorrection = 50;
+        var windowWidth = $(window).width();
+        var sidebarWidth = $("#sidebar").width();
+        $contentEl.css("width", (windowWidth - sidebarWidth - paddingCorrection));
+    }, 500);
 };
 
 function MediaController ($scope, $location, $rootScope, $http, $routeParams) {
