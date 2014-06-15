@@ -13,7 +13,6 @@ function MasterController ($scope, $location, $rootScope) {
     $(window).on("resize", function () {
         clearTimeout(tOut);
         setTimeout(function () {
-            console.log("resizing ...");
             $scope.resizeContent();
         }, 200);
     });
@@ -24,21 +23,26 @@ function MasterController ($scope, $location, $rootScope) {
 };
 
 function MediaController ($scope, $location, $rootScope, $http, $routeParams) {
-	console.log("MediaController");	
 	$rootScope.currentPage = "media";
     $rootScope.subPage = $routeParams.filter;
-};
+
+    if($routeParams.filter == 'all') {
+        $http.post("/media/list", {skip: 0, limit: 10}).success(function (resp) {
+            $scope.mediaList = resp;
+        });
+    }
+
+    $(window).trigger("resize");
+}
 
 function UsersController ($scope, $location, $rootScope, $http, $routeParams) {
-	console.log("UsersController");
 	$rootScope.currentPage = "users";
-};
+}
 
 function SettingsController ($scope, $location, $rootScope, $http, $routeParams) {
-	console.log("SettingsController");
 	$rootScope.currentPage = "settings";
     $rootScope.subPage = $routeParams.subPage;
-};
+}
 
 
 MasterController.$inject = ["$scope", "$location", "$rootScope"];

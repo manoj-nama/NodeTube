@@ -4,4 +4,17 @@
     <p data-ng-show="subPage == 'all'">All Media</p>
     <p data-ng-show="subPage == 'conversion'">Conversions</p>
 
+    <div class="media-list">
+        <div class="media-item" data-ng-repeat="media in mediaList">
+            <div class="image">
+                <img data-ng-src="/media/cover/{{media.mediaId}}"/>
+            </div>
+            <div class="info">
+                <span class="key"><span class="text">Conversions</span>: <span class="value">{{media.conversions.length}}</span></span>
+                <span class="key"><span class="text">Added</span>: <span class="value">{{media.timestampAdded | date : 'short'}}</span></span>
+                <span class="key"><span class="text">Status</span>: <span class="value">{{media.description.status}}</span></span>
+            </div>
+        </div>
+    </div>
+
 </div>

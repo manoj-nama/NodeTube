@@ -139,9 +139,11 @@ span.loader.right { float: right; }
 
 .media {
 	text-align: center;
+    overflow: hidden;
 	padding: 30px 0;
 	background-color: #000;
 }
+.media video { width: 95%; }
 .list { overflow: auto;}
 .list .media-item { 
 	margin: 0 5px; 
