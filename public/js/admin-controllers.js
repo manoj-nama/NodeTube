@@ -1,12 +1,25 @@
 function MasterController ($scope, $location, $rootScope) {
 	console.log("MasterController");
 
-    setTimeout(function () {
+    $scope.resizeContent = function () {
         var $contentEl = angular.element("#content");
         var paddingCorrection = 50;
-        var windowWidth = $(window).width();
+        var windowWidth = $("body").width();
         var sidebarWidth = $("#sidebar").width();
         $contentEl.css("width", (windowWidth - sidebarWidth - paddingCorrection));
+    };
+
+    var tOut = 0;
+    $(window).on("resize", function () {
+        clearTimeout(tOut);
+        setTimeout(function () {
+            console.log("resizing ...");
+            $scope.resizeContent();
+        }, 200);
+    });
+
+    setTimeout(function () {
+        $scope.resizeContent();
     }, 500);
 };
 

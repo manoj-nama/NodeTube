@@ -18,7 +18,7 @@ table, caption, tbody, tfoot, thead, tr, th, td {
 a{ text-decoration:none; }
 
 /* >>> COMMON <<<--------------------------- */
-body { background-color: #eee; }
+body { background-color: #eee; min-width: 1000px; }
 header {
 	padding: 10px 0;
 	border-bottom: 1px solid #ddd;
@@ -50,7 +50,7 @@ body {
 	margin: 0 auto;
 	float: left;
 	overflow: auto;
-	min-width: 800px;
+	min-width: 700px;
 }
 .section {
 	padding: 0 20px;
