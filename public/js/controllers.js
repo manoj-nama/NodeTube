@@ -30,14 +30,14 @@ function HomeController ($scope, $location, $rootScope, $http) {
 					$scope.$apply(function () {
 						$rootScope.media = resp.fileId;
 						$scope.isUploadingFile = false;
-						$rootScope.uploadProgress = 0;
+						$scope.uploadProgress = 0;
 						$location.path("/convert/options/" + resp.fileId);
 					});
 				}
 			}
 			xhr.upload.onprogress = function (e) {
 				var progress = (e.loaded / e.total) * 100;
-				$rootScope.uploadProgress = progress;
+				$scope.uploadProgress = progress;
 				$scope.$apply();
 			};
 			xhr.upload.onerror = function (e) {

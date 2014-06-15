@@ -11,6 +11,9 @@
 
 	<br><br>
 	<button class="button {{isUploadingFile && 'loading' || ''}}" data-ng-show="!!chosenFile" data-ng-click="!isUploadingFile && uploadFile()">
+		<div class="pgress-wrap">
+			<div class="pgress" style="width: {{uploadProgress || 0}}%"></div>
+		</div>
 		<span data-ng-show="isUploadingFile">Uploading ..</span>
 		<span data-ng-hide="isUploadingFile">Upload file</span>
 		<span class="loader right" data-ng-show="isUploadingFile"></span>

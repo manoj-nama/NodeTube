@@ -92,13 +92,6 @@ form label {
 }
 
 /* >>> CLASSES <<<--------------------------- */
-.progress {
-	position: fixed;
-	transition: width 0.3s;
-	height: 3px;
-	background-color: #09f;
-	box-shadow: 0px 0px 10px #05f;
-}
 .button {
 	background-color: #08d; color: #fff;
 	outline: none;
@@ -135,7 +128,7 @@ form label {
 .button span { float: left;}
 span.loader {
 	background: url("/img/loader.gif") no-repeat center center;
-	width: 24px; height: 24px;	display: block; margin-top: 5px;
+	width: 24px; height: 24px;	display: block;
 }
 span.loader.right { float: right; }
 .clearBottom { margin-bottom: 40px; }
@@ -195,3 +188,12 @@ span.loader.right { float: right; }
 .google-login { background: url("/img/google-login.png") no-repeat center center; }
 .fb-login:hover { background-color: #3b5998; }
 .google-login:hover { background-color: #d34836; }
+
+
+.pgress-wrap {
+	position: absolute; height: 49px;
+	width: 180px; margin-left: -15px;margin-top: -10px;
+}
+.pgress {
+	transition: width 0.3s; height: 100%; border-bottom: 4px solid #09f;
+}
