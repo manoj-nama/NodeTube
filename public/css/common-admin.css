@@ -40,7 +40,6 @@ footer span a:hover { text-decoration: none; background-color: #09f; color: #fff
 h1, h2, h3, h4, h5, h6 { font-family: 'Lato', sans-serif; font-weight: 400; }
 /* >>> ELEMENTS <<<--------------------------- */
 body {
-	/*overflow-y: scroll;*/
 }
 #content-wrap {
 	overflow: auto;
@@ -115,8 +114,21 @@ h3 { font-size: 1.4em;}
 }
 .media-item .image img {
     display: block;
+    transition: all 0.4s;
     width: 250px;
     min-height: 130px;
+    -webkit-filter: brightness(80%);
+    -moz-filter: brightness(80%);
+    -ms-filter: brightness(80%);
+    -o-filter: brightness(80%);
+    filter: gray;
+}
+.media-item:hover .image img {
+    filter: none;
+    -webkit-filter: brightness(120%);
+    -moz-filter: brightness(120%);
+    -ms-filter: brightness(120%);
+    -o-filter: brightness(120%);
 }
 .media-item .info { padding: 10px;}
 .media-item .info span.key {
