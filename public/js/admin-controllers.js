@@ -26,11 +26,15 @@ function MediaController ($scope, $location, $rootScope, $http, $routeParams) {
 	$rootScope.currentPage = "media";
     $rootScope.subPage = $routeParams.filter;
 
+    var options = {skip: 0, limit: 10};
     if($routeParams.filter == 'all') {
-        $http.post("/media/list", {skip: 0, limit: 10}).success(function (resp) {
-            $scope.mediaList = resp;
-        });
+        options = {skip: 0, limit: 10};
+    } else if($routeParams.filter == "conversion") {
+        options["query"] = {"conversions.status": "pending"};
     }
+    $http.post("/media/list", options).success(function (resp) {
+        $scope.mediaList = resp;
+    });
 
     $(window).trigger("resize");
 }

@@ -5,6 +5,7 @@
     <p data-ng-show="subPage == 'conversion'">Conversions</p>
 
     <div class="media-list">
+        <div data-ng-show="!mediaList.length"><h1>No Media Found.</h1></div>
         <div class="media-item" data-ng-repeat="media in mediaList">
             <div class="image">
                 <img data-ng-src="/media/cover/{{media.mediaId}}"/>

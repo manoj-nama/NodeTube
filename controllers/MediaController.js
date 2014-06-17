@@ -23,6 +23,9 @@ exports.stream = function (req, res) {
 exports.list = function (req, res) {
 	var query = req.body.query || {};
 	var projection = req.body.projection || {};
+    console.log("------");
+    console.log(req.body);
+    console.log("------");
 	MediaService.list(req.body.skip, req.body.limit, query, projection)
 		.on("ERROR", function (err) {
 			res.sendErrorResponse(err);
