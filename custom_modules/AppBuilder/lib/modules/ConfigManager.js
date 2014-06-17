@@ -4,6 +4,8 @@ var path = require("path");
 exports = module.exports = function ConfigManager(options, callback) {
     var appConfigRaw = require(path.join(_appBaseDir, "config/AppConfig.json"));
     var configRaw = require(path.join(_appBaseDir, "config/Config.json"));
+    GLOBAL.__rawAppConfig = appConfigRaw;
+    GLOBAL.__rawConfig = configRaw;
     options.postProcess = options.postProcess || function (config) {
         return config;
     };

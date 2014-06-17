@@ -3,4 +3,10 @@
 
     <p data-ng-show="subPage == 'config'">Config</p>
     <p data-ng-show="subPage == 'appconfig'">Application Config</p>
+
+    <div class="settings media-list">
+        <div class="setting-item" data-ng-repeat="(key, value) in settings">
+            <span>{{key}}</span> <span>{{value}}</span> <br>
+        </div>
+    </div>
 </div>

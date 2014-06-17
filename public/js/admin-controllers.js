@@ -46,6 +46,10 @@ function UsersController ($scope, $location, $rootScope, $http, $routeParams) {
 function SettingsController ($scope, $location, $rootScope, $http, $routeParams) {
 	$rootScope.currentPage = "settings";
     $rootScope.subPage = $routeParams.subPage;
+
+    $http.get("/settings/" + $routeParams.subPage).success(function (resp) {
+        $scope.settings = resp;
+    });
 }
 
 
