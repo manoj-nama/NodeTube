@@ -41,6 +41,10 @@ function MediaController ($scope, $location, $rootScope, $http, $routeParams) {
 
 function UsersController ($scope, $location, $rootScope, $http, $routeParams) {
 	$rootScope.currentPage = "users";
+    var options = {skip: 0, limit: 10};
+    $http.post("/users/list", options).success(function (resp) {
+        $scope.users = resp;
+    });
 }
 
 function SettingsController ($scope, $location, $rootScope, $http, $routeParams) {

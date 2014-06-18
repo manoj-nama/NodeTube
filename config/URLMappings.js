@@ -1,6 +1,7 @@
 var controllers = {
 	HomeController: require('../controllers/HomeController'),
 	MediaController: require('../controllers/MediaController'),
+	UserController: require('../controllers/UserController'),
 	ConversionController: require('../controllers/ConversionController'),
     UtilController: require("../controllers/UtilController"),
     StaticServer: require("../utils/StaticFileServer")
@@ -19,4 +20,6 @@ exports.addRoutes = function (app) {
 
 	app.post("/media/upload", controllers.MediaController.uploadMedia);
 	app.post("/media/list", controllers.MediaController.list);
+
+	app.post("/users/list", controllers.UserController.list);
 };

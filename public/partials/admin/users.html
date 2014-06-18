@@ -1,5 +1,11 @@
 <div id="media">
 	<h3>Users</h3>
 
-	
+    <p>Showing all users</p>
+
+    <div class="settings media-list">
+        <div class="setting-item" data-ng-repeat="user in users">
+            <span>{{$index + 1}}</span>: <span>{{user.emailId}}</span> <span>{{user.name.alias}}</span> <br>
+        </div>
+    </div>
 </div>
