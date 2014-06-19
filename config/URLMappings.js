@@ -18,6 +18,8 @@ exports.addRoutes = function (app) {
     app.get("/settings/config", controllers.UtilController.config);
     app.get("/settings/appconfig", controllers.UtilController.AppConfig);
 
+    app.get("/auth/login/:service", controllers.UserController.login);
+
 	app.post("/media/upload", controllers.MediaController.uploadMedia);
 	app.post("/media/list", controllers.MediaController.list);
 

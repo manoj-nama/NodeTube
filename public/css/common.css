@@ -174,7 +174,7 @@ span.loader.right { float: right; }
 	box-shadow: 0px -4px 10px rgba(0,0,0,0.2) inset;
 	transition: all 0.4s;
 }
-.drawer-close { margin-top: -98px;}
+.drawer-close { margin-top: -100px;}
 .drawer-open { margin-top: 0;}
 #drawer .field {
 	height: 100px;

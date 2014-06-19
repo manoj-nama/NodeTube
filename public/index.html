@@ -10,8 +10,8 @@
 <body data-ng-app="VideoApp" data-ng-controller="MasterController">
 	<div id="drawer" class="drawer-close">
 		<div class="field section">
-			<div class="google-login login"></div>
-			<div class="fb-login login"></div>
+            <a href="javascript:void(0);" data-ng-click="doAuthLogin('google');"><div class="google-login login"></div></a>
+            <a href="javascript:void(0);" data-ng-click="doAuthLogin('facebook');"><div class="fb-login login"></div></a>
 		</div>
 	</div>
 	<header>

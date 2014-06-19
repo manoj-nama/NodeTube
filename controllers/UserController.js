@@ -9,3 +9,9 @@ exports.list = function (req, res) {
             res.sendSuccessResponse(resp);
         });
 };
+
+exports.login = function (req, res) {
+    var service = req.params.service;
+    console.log(service, "Login feature, To Be Implemented");
+    res.sendSuccessResponse({feature: "TBI"});
+};

@@ -1,7 +1,15 @@
-function MasterController ($scope, $location, $rootScope) {
+function MasterController ($scope, $http, $location, $rootScope) {
 	$scope.toggleMenu = function () {
 		angular.element("#drawer").toggleClass("drawer-open");
 	};
+
+    $scope.doAuthLogin = function (service) {
+        console.log("TBI: Logging in with", service);
+        $http.get("/auth/login/" + service).success(function (resp) {
+            console.log(resp);
+            $scope.toggleMenu();
+        });
+    };
 }
 
 function HomeController ($scope, $location, $rootScope, $http) {
@@ -62,6 +70,6 @@ function VideoConfigController ($scope, $location, $rootScope, $routeParams) {
 }
 
 
-MasterController.$inject = ["$scope", "$location", "$rootScope"];
+MasterController.$inject = ["$scope", "$http", "$location", "$rootScope"];
 HomeController.$inject = ["$scope", "$location", "$rootScope", "$http"];
 VideoConfigController.$inject = ["$scope", "$location", "$rootScope", "$routeParams"];
