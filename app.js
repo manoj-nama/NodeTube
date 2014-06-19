@@ -16,6 +16,7 @@ GLOBAL._appBaseDir = __dirname;
 GLOBAL._views = path.join(__dirname, "views");
 GLOBAL.__appEnv = process.env.NODE_ENV || "development";
 
+AppBuilder.initEnums();
 AppBuilder.initConfig({
     postProcess: function (config) {
         config.port = process.env.PORT || config.port;

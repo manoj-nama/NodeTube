@@ -22,7 +22,7 @@ exports.uploadMedia = function (file) {
 						size: "480x?"
 					};
 					ConversionService.getSnapshots(options)
-						.on("DONE", function (snaps) {
+						.on(enums.Events.DONE, function (snaps) {
 							var m = new Media({
 								mediaId: fileNameToSend,
 								timestampAdded: +new Date(),
@@ -31,22 +31,22 @@ exports.uploadMedia = function (file) {
 								}
 							}).save(function(err, resp) {
 								if(err) {
-									emitter.emit("ERROR", "Could not save Media");
+									emitter.emit(enums.Events.ERROR, "Could not save Media");
 								} else {
-									emitter.emit("DONE", {fileId: fileNameToSend});
+									emitter.emit(enums.Events.DONE, {fileId: fileNameToSend});
 								}
 							});
 						})
-						.on("ERROR", function(err) {
-							emitter.emit("ERROR", "Cannot get Snaps");
+						.on(enums.Events.ERROR, function(err) {
+							emitter.emit(enums.Events.ERROR, "Cannot get Snaps");
 						});
 				} else {
-					emitter.emit("ERROR", "Error reading file");
+					emitter.emit(enums.Events.ERROR, "Error reading file");
 				}
 			});
 		});
 	} else {
-		emitter.emit("ERROR", "no file");
+		emitter.emit(enums.Events.ERROR, "no file");
 	}
 }.toEmitter();
 
@@ -54,9 +54,9 @@ exports.list = function (skip, limit, query, projection) {
 	var emitter = this;
 	Media.find(query, projection, {skip: skip, limit: limit}, function (err, docs) {
 		if(err) {
-			emitter.emit("ERROR", err);
+			emitter.emit(enums.Events.ERROR, err);
 		} else {
-			emitter.emit("DONE", docs);
+			emitter.emit(enums.Events.DONE, docs);
 		}
 	});
 }.toEmitter();

@@ -41,6 +41,15 @@ exports.initDomains = function (callback) {
     });
 };
 
+exports.initEnums = function () {
+    var enums = require(path.join(process.cwd(), "utils", "Enum"));
+    Object.defineProperty(global, "enums", {
+        get: function () {
+            return enums;
+        }
+    });
+};
+
 exports.initServices = function () {
     try {
         var list = fs.readdirSync(path.join(_appBaseDir, "services"));
