@@ -15,3 +15,49 @@ exports.login = function (req, res) {
     console.log(service, "Login feature, To Be Implemented");
     res.sendSuccessResponse({feature: "TBI"});
 };
+
+exports.get = function (req, res) {
+    var userId = req.params.userId;
+    if(userId) {
+        UserService.get(userId)
+            .on("ERROR", function (err) {
+                res.sendErrorResponse(err);
+            })
+            .on("DONE", function (resp) {
+                res.sendSuccessResponse(resp);
+            });
+    } else {
+        res.sendErrorResponse({error: "Invalid UserID Supplied"});
+    }
+};
+
+exports.delete = function (req, res) {
+    var userId = req.params.userId;
+    if(userId) {
+        UserService.delete(userId)
+            .on("ERROR", function (err) {
+                res.sendErrorResponse(err);
+            })
+            .on("DONE", function (resp) {
+                res.sendSuccessResponse(resp);
+            });
+    } else {
+        res.sendErrorResponse({error: "Invalid UserID Supplied"});
+    }
+};
+
+exports.update = function (req, res) {
+    var userId = req.params.userId;
+    var dirtyProps = req.body.dirtyProps;
+    if(userId) {
+        UserService.update(userId, dirtyProps)
+            .on("ERROR", function (err) {
+                res.sendErrorResponse(err);
+            })
+            .on("DONE", function (resp) {
+                res.sendSuccessResponse(resp);
+            });
+    } else {
+        res.sendErrorResponse({error: "Invalid UserID Supplied"});
+    }
+};

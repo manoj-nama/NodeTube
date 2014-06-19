@@ -23,5 +23,8 @@ exports.addRoutes = function (app) {
 	app.post("/media/upload", controllers.MediaController.uploadMedia);
 	app.post("/media/list", controllers.MediaController.list);
 
-	app.post("/users/list", controllers.UserController.list);
+    app.get("/users/:userId", controllers.UserController.get);
+    app.delete("/users/:userId", controllers.UserController.delete);
+    app.put("/users/:userId", controllers.UserController.update);
+    app.post("/users/list", controllers.UserController.list);
 };
