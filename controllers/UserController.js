@@ -1,11 +1,12 @@
 exports.list = function (req, res) {
+    console.log(events);
     var query = req.body.query || {};
     var projection = req.body.projection || {};
     UserService.list(req.body.skip, req.body.limit, query, projection)
-        .on(enums.Events.ERROR, function (err) {
+        .on(events.ERROR, function (err) {
             res.sendErrorResponse(err);
         })
-        .on(enums.Events.DONE, function (resp) {
+        .on(events.DONE, function (resp) {
             res.sendSuccessResponse(resp);
         });
 };
@@ -20,10 +21,10 @@ exports.get = function (req, res) {
     var userId = req.params.userId;
     if(userId) {
         UserService.get(userId)
-            .on(enums.Events.ERROR, function (err) {
+            .on(events.ERROR, function (err) {
                 res.sendErrorResponse(err);
             })
-            .on(enums.Events.DONE, function (resp) {
+            .on(events.DONE, function (resp) {
                 res.sendSuccessResponse(resp);
             });
     } else {
@@ -35,10 +36,10 @@ exports.delete = function (req, res) {
     var userId = req.params.userId;
     if(userId) {
         UserService.delete(userId)
-            .on(enums.Events.ERROR, function (err) {
+            .on(events.ERROR, function (err) {
                 res.sendErrorResponse(err);
             })
-            .on(enums.Events.DONE, function (resp) {
+            .on(events.DONE, function (resp) {
                 res.sendSuccessResponse(resp);
             });
     } else {
@@ -51,10 +52,10 @@ exports.update = function (req, res) {
     var dirtyProps = req.body.dirtyProps;
     if(userId) {
         UserService.update(userId, dirtyProps)
-            .on(enums.Events.ERROR, function (err) {
+            .on(events.ERROR, function (err) {
                 res.sendErrorResponse(err);
             })
-            .on(enums.Events.DONE, function (resp) {
+            .on(events.DONE, function (resp) {
                 res.sendSuccessResponse(resp);
             });
     } else {

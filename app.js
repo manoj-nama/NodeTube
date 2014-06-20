@@ -5,6 +5,7 @@ var AppBuilder = require("./custom_modules/AppBuilder");
 var bodyParser = require("body-parser");
 var multipart = require('connect-multiparty')();
 var path = require("path");
+var events = require("./utils/Events");
 
 var app = express();
 app.use(logger('dev'));
@@ -14,9 +15,9 @@ app.use(AppBuilder.apiHelperToolInjectionMiddleware);
 
 GLOBAL._appBaseDir = __dirname;
 GLOBAL._views = path.join(__dirname, "views");
+GLOBAL.events = events;
 GLOBAL.__appEnv = process.env.NODE_ENV || "development";
 
-AppBuilder.initEnums();
 AppBuilder.initConfig({
     postProcess: function (config) {
         config.port = process.env.PORT || config.port;

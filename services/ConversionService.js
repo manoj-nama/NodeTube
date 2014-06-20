@@ -29,7 +29,7 @@ exports.convert = function (options) {
 		})
 		.on('error', function(err) {
 			console.log('An error occurred: ' + err.message);
-			emitter.emit(enums.Events.ERROR, err);
+			emitter.emit(events.ERROR, err);
 		})
 		.on('codecData', function(data) {
 			console.log('Codec: ', data);
@@ -44,7 +44,7 @@ exports.convert = function (options) {
 		.on('end', function(filenames) {
 			console.log();
 			console.log(options.inputFile, 'Conversion Successful.');
-			emitter.emit(enums.Events.DONE, filenames);
+			emitter.emit(events.DONE, filenames);
 		})
 		.saveToFile(_appBaseDir  + _config.conversion.mediaPath + inputFileName)
 	});
@@ -61,11 +61,11 @@ exports.getSnapshots = function (options) {
 	})
 	.on('end', function (filenames) {
 		console.log("Successfully taken snapshots", filenames.join(", "));
-		emitter.emit(enums.Events.DONE, filenames);
+		emitter.emit(events.DONE, filenames);
 	})
 	.on('error', function(err) {
 		console.log('An error occurred: ' + err.message);
-		emitter.emit(enums.Events.ERROR, err);
+		emitter.emit(events.ERROR, err);
 	})
 	.takeScreenshots(
 		{

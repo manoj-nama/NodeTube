@@ -23,7 +23,7 @@ exports.uploadMedia = function (file) {
 						size: "480x?"
 					};
 					ConversionService.getSnapshots(options)
-						.on(enums.Events.DONE, function (snaps) {
+						.on(events.DONE, function (snaps) {
 							var m = new Media({
 								mediaId: fileNameToSend,
 								timestampAdded: +new Date(),
@@ -32,22 +32,22 @@ exports.uploadMedia = function (file) {
 								}
 							}).save(function(err, resp) {
 								if(err) {
-									emitter.emit(enums.Events.ERROR, "Could not save Media");
+									emitter.emit(events.ERROR, "Could not save Media");
 								} else {
-									emitter.emit(enums.Events.DONE, {fileId: fileNameToSend});
+									emitter.emit(events.DONE, {fileId: fileNameToSend});
 								}
 							});
 						})
-						.on(enums.Events.ERROR, function(err) {
-							emitter.emit(enums.Events.ERROR, "Cannot get Snaps");
+						.on(events.ERROR, function(err) {
+							emitter.emit(events.ERROR, "Cannot get Snaps");
 						});
 				} else {
-					emitter.emit(enums.Events.ERROR, "Error reading file");
+					emitter.emit(events.ERROR, "Error reading file");
 				}
 			});
 		});
 	} else {
-		emitter.emit(enums.Events.ERROR, "no file");
+		emitter.emit(events.ERROR, "no file");
 	}
 }.toEmitter();
 
@@ -55,9 +55,9 @@ exports.list = function (skip, limit, query, projection) {
 	var emitter = this;
 	Media.find(query, projection, {skip: skip, limit: limit}, function (err, docs) {
 		if(err) {
-			emitter.emit(enums.Events.ERROR, err);
+			emitter.emit(events.ERROR, err);
 		} else {
-			emitter.emit(enums.Events.DONE, docs);
+			emitter.emit(events.DONE, docs);
 		}
 	});
 }.toEmitter();
@@ -66,9 +66,9 @@ exports.get = function (mediaId) {
 	var emitter = this;
 	Media.findOne({mediaId: mediaId}, function (err, media) {
 		if(err) {
-			emitter.emit(enums.Events.ERROR, err);
+			emitter.emit(events.ERROR, err);
 		} else {
-			emitter.emit(enums.Events.DONE, media);
+			emitter.emit(events.DONE, media);
 		}
 	});
 }.toEmitter();
@@ -79,10 +79,10 @@ exports.delete = function (mediaId) {
     var mediaPath = _appBaseDir + _config.conversion.mediaPath;
     Media.remove({mediaId: mediaId}, function (err, resp) {
         if(err) {
-            emitter.emit(enums.Events.ERROR, err);
+            emitter.emit(events.ERROR, err);
         } else {
             UtilController.deleteFolder(mediaPath + mediaId);
-            emitter.emit(enums.Events.DONE, resp);
+            emitter.emit(events.DONE, resp);
         }
     });
 }.toEmitter();
