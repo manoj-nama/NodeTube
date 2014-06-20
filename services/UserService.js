@@ -1,5 +1,6 @@
 exports.list = function (skip, limit, query, projection) {
     var emitter = this;
+    projection["password"] = 0;
     User.find(query, projection, {skip: skip, limit: limit}, function (err, docs) {
         if(err) {
             emitter.emit(enums.Events.ERROR, err);
