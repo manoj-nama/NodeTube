@@ -31,3 +31,33 @@ exports.list = function (req, res) {
 			res.sendSuccessResponse(resp);
 		});
 };
+
+exports.delete = function (req, res) {
+    var mediaId = req.params.mediaId;
+    if(mediaId) {
+        MediaService.delete(mediaId)
+            .on(enums.Events.ERROR, function (err) {
+                res.sendErrorResponse(err);
+            })
+            .on(enums.Events.DONE, function (resp) {
+                res.sendSuccessResponse(resp);
+            });
+    } else {
+        res.sendErrorResponse({error: "Invalid MediaId Supplied"});
+    }
+};
+
+exports.get = function (req, res) {
+    var mediaId = req.params.mediaId;
+    if(mediaId) {
+        MediaService.get(mediaId)
+            .on(enums.Events.ERROR, function (err) {
+                res.sendErrorResponse(err);
+            })
+            .on(enums.Events.DONE, function (resp) {
+                res.sendSuccessResponse(resp);
+            });
+    } else {
+        res.sendErrorResponse({error: "Invalid MediaId Supplied"});
+    }
+};

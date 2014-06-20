@@ -1,6 +1,7 @@
 var fs = require('fs');
 var mkdirp = require('mkdirp');
 var crypto = require('crypto');
+var UtilController = require("../controllers/UtilController");
 
 exports.uploadMedia = function (file) {
 	var emitter = this;
@@ -59,4 +60,29 @@ exports.list = function (skip, limit, query, projection) {
 			emitter.emit(enums.Events.DONE, docs);
 		}
 	});
+}.toEmitter();
+
+exports.get = function (mediaId) {
+	var emitter = this;
+	Media.findOne({mediaId: mediaId}, function (err, media) {
+		if(err) {
+			emitter.emit(enums.Events.ERROR, err);
+		} else {
+			emitter.emit(enums.Events.DONE, media);
+		}
+	});
+}.toEmitter();
+
+
+exports.delete = function (mediaId) {
+    var emitter = this;
+    var mediaPath = _appBaseDir + _config.conversion.mediaPath;
+    Media.remove({mediaId: mediaId}, function (err, resp) {
+        if(err) {
+            emitter.emit(enums.Events.ERROR, err);
+        } else {
+            UtilController.deleteFolder(mediaPath + mediaId);
+            emitter.emit(enums.Events.DONE, resp);
+        }
+    });
 }.toEmitter();
