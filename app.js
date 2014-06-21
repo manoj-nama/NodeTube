@@ -5,9 +5,15 @@ var AppBuilder = require("./custom_modules/AppBuilder");
 var bodyParser = require("body-parser");
 var multipart = require('connect-multiparty')();
 var path = require("path");
+var httpServer = require("http").Server;
 var events = require("./utils/Events");
+var io = require("socket.io");
 
 var app = express();
+
+//Include Socket IO Connections
+httpServer = httpServer(app);
+
 app.use(logger('dev'));
 app.use(bodyParser());
 app.use(multipart);
@@ -25,17 +31,24 @@ AppBuilder.initConfig({
     }
 });
 
-AppBuilder.initDomains(function () {
-	AppBuilder.initServices();
-
-	require("./config/Bootstrap.js").init();
-});
-
 appRouter.addRoutes(app);
 
 app.use(express.static(path.join(__dirname, 'public')));
 
-app.listen(process.env.PORT || 8888, function () {
-    console.log("Server Listening on port", process.env.PORT || 8888);
+AppBuilder.initDomains(function () {
+
+    AppBuilder.initHooks();
+	AppBuilder.initServices();
+
+	require("./config/Bootstrap.js").init();
+
+    var options = {
+        transports: ["websocket", "xhr-polling", "jsonp-polling"]
+    };
+    httpServer.listen(process.env.PORT || 8888, function () {
+        console.log("Server Listening on port", process.env.PORT || 8888);
+        globalEvent.emit("SocketIOStarted", io(httpServer, options));
+    });
 });
+
 

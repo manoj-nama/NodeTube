@@ -41,6 +41,25 @@ exports.initDomains = function (callback) {
     });
 };
 
+//Enable global app event hooks
+exports.initHooks = function () {
+    try {
+        global.globalEvent = new process.EventEmitter();
+        var list = fs.readdirSync(path.join(_appBaseDir, "hooks"));
+        list.forEach(function (item) {
+            var name = item.toString().replace(/\.js$/, "");
+            var hook = require(path.join(_appBaseDir, "hooks", name));
+            if (typeof(hook.onEvent) == 'function') {
+                global.globalEvent.on(name, hook.onEvent);
+            } else {
+                log.error(new Error("Hook: [" + item + "] is invalid. Please define a function named 'onEvent' in the Hook file. This function will be called on event."));
+            }
+        });
+    } catch (err) {
+        log.error(err);
+    }
+};
+
 exports.initServices = function () {
     try {
         var list = fs.readdirSync(path.join(_appBaseDir, "services"));
