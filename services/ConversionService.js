@@ -21,7 +21,7 @@ exports.convert = function (options) {
 		.withVideoBitrate(data.video.bitrate)
 		.withVideoCodec(options.videoCodec || 'mpeg4')
 		.withAudioBitrate(options.audioBitrate || '128k')
-		.withAudioCodec(options.audioCode || 'libvo_aacenc')
+		.withAudioCodec(options.audioCodec || 'libvo_aacenc')
 		.withAudioChannels(options.audioChannels || 2)
 		.toFormat(options.toFormat || "mp4")
 		.on('start', function() {
