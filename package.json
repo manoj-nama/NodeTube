@@ -1,7 +1,7 @@
 {
-  "name": "video-tester",
+  "name": "NodeTube",
   "version": "0.0.0",
-  "description": "An Experimental Video Converter using NodeJS",
+  "description": "A Social Media Hub",
   "main": "app.js",
   "dependencies": {
     "fluent-ffmpeg": "~1.7.1",
@@ -21,12 +21,12 @@
   },
   "repository": {
     "type": "git",
-    "url": "git://github.com/manoj-nama/video-converter.git"
+    "url": "git://github.com/manoj-nama/NodeTube.git"
   },
   "author": "Manoj Nama",
   "license": "ISC",
   "bugs": {
-    "url": "https://github.com/manoj-nama/video-converter/issues"
+    "url": "https://github.com/manoj-nama/NodeTube/issues"
   },
-  "homepage": "https://github.com/manoj-nama/video-converter"
+  "homepage": "https://github.com/manoj-nama/NodeTube"
 }
