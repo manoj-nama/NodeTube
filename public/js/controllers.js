@@ -66,7 +66,9 @@ function HomeController ($scope, $location, $rootScope, $http) {
 function VideoConfigController ($scope, $location, $rootScope, $routeParams) {
 	$scope.media = $routeParams.id || $rootScope.media;
 	$scope.mediaCover = "/media/cover/" + $scope.media;
-	$scope.mediaStreamUrl = "/media/stream/" + $scope.media;
+	$scope.mediaStreamUrl = "/media/stream/mp4/" + $scope.media;
+	$scope.mediaStreamUrlWebM = "/media/stream/webm/" + $scope.media;
+	$scope.mediaStreamUrlOgg = "/media/stream/ogg/" + $scope.media;
 }
 
 

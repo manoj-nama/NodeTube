@@ -20,7 +20,7 @@ function MasterController ($scope, $location, $rootScope) {
     setTimeout(function () {
         $scope.resizeContent();
     }, 500);
-};
+}
 
 function MediaController ($scope, $location, $rootScope, $http, $routeParams) {
 	$rootScope.currentPage = "media";

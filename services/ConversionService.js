@@ -3,29 +3,27 @@ var crypto = require('crypto');
 
 exports.convert = function (options) {
 	var emitter = this;
-	var meta = ffmpeg.Metadata;
+	var metaData = ffmpeg.Metadata;
 	var inputFile = options.inputFile;
+    var outputFileName = options.outputFileName;
 
 	var convertedWidth = options.convertedWidth || "?";
 	var convertedHeight = options.convertedHeight || "480";
+    var convertedSize = convertedWidth + "x" + convertedHeight;
+    var format = options.toFormat || "mp4";
 
-	var inputFileName = crypto.createHash('SHA').update(inputFile + (+new Date())).digest('hex');
-	inputFileName += ("." + (options.toFormat || "mp4"));
-	 
-	meta(inputFile, function(data) {
-		var size = data.video.resolution.w + "x" + data.video.resolution.h;
+	ffmpeg.ffprobe(inputFile, function(err, data) {
+		var size = data.streams[0].width + "x" + data.streams[0].height;
 		var ff = new ffmpeg({source: inputFile});
 		var progressObj = {};
 
-		ff.withSize(convertedWidth + "x" + convertedHeight)
-		.withVideoBitrate(data.video.bitrate)
+		ff.withSize(convertedSize || size)
+		.withVideoBitrate(data.streams[0].bit_rate)
 		.withVideoCodec(options.videoCodec || 'mpeg4')
-		.withAudioBitrate(options.audioBitrate || '128k')
 		.withAudioCodec(options.audioCodec || 'libvo_aacenc')
-		.withAudioChannels(options.audioChannels || 2)
-		.toFormat(options.toFormat || "mp4")
+		.toFormat(format)
 		.on('start', function() {
-			console.log('starting...');
+			console.log('starting conversion', format ,"...");
 		})
 		.on('error', function(err) {
 			console.log('An error occurred: ' + err.message);
@@ -38,7 +36,7 @@ exports.convert = function (options) {
 			var p = Math.round(progress.percent);
 			if(!progressObj.hasOwnProperty(p)) {
 			   progressObj[p] = progress.percent;
-			   process.stdout.write(options.inputFile + " ==> " + p + "%\033[0G");
+			   process.stdout.write(format + " ==> " + p + "%\033[0G");
 			}
 		})
 		.on('end', function(filenames) {
@@ -46,7 +44,7 @@ exports.convert = function (options) {
 			console.log(options.inputFile, 'Conversion Successful.');
 			emitter.emit(events.DONE, filenames);
 		})
-		.saveToFile(_appBaseDir  + _config.conversion.mediaPath + inputFileName)
+		.saveToFile(outputFileName)
 	});
 }.toEmitter();
 

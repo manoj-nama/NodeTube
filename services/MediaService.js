@@ -2,6 +2,8 @@ var fs = require('fs');
 var mkdirp = require('mkdirp');
 var crypto = require('crypto');
 var UtilController = require("../controllers/UtilController");
+var extend = require("extend");
+var async = require("async");
 
 exports.uploadMedia = function (file) {
 	var emitter = this;
@@ -34,6 +36,7 @@ exports.uploadMedia = function (file) {
 								if(err) {
 									emitter.emit(events.ERROR, "Could not save Media");
 								} else {
+                                    exports.convertDefaults(outputDir, fileNameToSend);
 									emitter.emit(events.DONE, {fileId: fileNameToSend});
 								}
 							});
@@ -50,6 +53,69 @@ exports.uploadMedia = function (file) {
 		emitter.emit(events.ERROR, "no file");
 	}
 }.toEmitter();
+
+exports.convertDefaults = function (outputDir, mediaId) {
+    var formats = {};
+    formats["mp4"] = {audio: "libvo_aacenc", video: "mpeg4"};
+//    formats["ogg"] = {audio: "libvorbis", video: "libtheora"};
+//    formats["webm"] = {audio: "libvorbis", video: "libvpx"};
+    var tasks = [];
+    for(var key in formats) {
+        if(formats.hasOwnProperty(key)) {
+            (function (key) {
+                tasks.push(function (cb) {
+                    var options = {};
+                    options["inputFile"] = outputDir + "/" + mediaId;
+                    options["outputFileName"] = outputDir + "/" + mediaId + "_" + key;
+                    options["videoCodec"] = formats[key].video;
+                    options["audioCodec"] = formats[key].audio;
+                    options["toFormat"] = key;
+                    ConversionService.convert(options)
+                        .on(events.DONE, function (resp) {
+                            console.log("CONVERSION SUCCESSFULL", mediaId, resp);
+                            Media.update({mediaId: mediaId}, {"$push": {}}, function (err, updateCount) {
+                                if(err) {
+                                    console.log("Error updating conversion data");
+                                }
+                                cb(null, {
+                                    format: options.toFormat,
+                                    mediaId: mediaId,
+                                    timestampConverted: +new Date(),
+                                    status: "complete"
+                                });
+                            });
+
+                        })
+                        .on(events.ERROR, function (err) {
+                            console.log("ERROR WHILE CONVERSION", mediaId, err);
+                            cb(err, null);
+                        });
+                });
+            })(key);
+        }
+    }
+
+    async.series(tasks, function (err, resp) {
+        if(err) {
+            console.log("----------------------------------------------------------");
+            console.log("DEFAULT CONVERSION ABORTED");
+            console.log(err);
+            console.log("----------------------------------------------------------");
+        } else {
+            console.log("----------------------------------------------------------");
+            console.log("DEFAULT CONVERSION FINISHED");
+            console.log(resp);
+            console.log("----------------------------------------------------------");
+            Media.update({mediaId: mediaId}, {"$pushAll": {conversions: resp}}, function (err, count) {
+                if(err) {
+                    console.log("Error updating media conversion entries.");
+                } else {
+                    console.log("Successfully Added conversion entries for media", mediaId);
+                }
+            });
+        }
+    });
+};
 
 exports.list = function (skip, limit, query, projection) {
 	var emitter = this;

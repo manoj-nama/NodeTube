@@ -17,7 +17,8 @@ exports.cover = function (req, res) {
 };
 
 exports.stream = function (req, res) {
-	res.sendfile(_appBaseDir + _config.conversion.mediaPath + req.params.id + "/" + req.params.id);
+    var fileName = _appBaseDir + _config.conversion.mediaPath + req.params.id + "/" + req.params.id + "_" + req.params.format;
+	res.sendfile(fileName);
 };
 
 exports.list = function (req, res) {

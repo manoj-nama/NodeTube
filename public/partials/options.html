@@ -1,5 +1,7 @@
 <div class="media">
-	<video controls ng-attr-poster="{{mediaCover || ''}}">
-		<source data-ng-src="{{mediaStreamUrl}}" type="video/mp4"/>
+    <video controls ng-attr-poster="{{mediaCover || ''}}">
+        <source data-ng-src="{{mediaStreamUrlWebM}}" type="video/webm"/>
+        <!--<source data-ng-src="{{mediaStreamUrl}}" type="video/mp4"/>-->
+		<!--<source data-ng-src="{{mediaStreamUrlOgg}}" type="video/ogg"/>-->
 	</video>
 </div>
