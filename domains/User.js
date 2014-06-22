@@ -5,8 +5,13 @@ exports.schema = {
 	password: String,
 	dateJoined: Number,
 	lastLogin: Number,
-	roles: Array
-}
+	roles: Array,
+    playlists: [{
+        playlistName: String,
+        description: String,
+        mediaList: Array
+    }]
+};
 
 exports.indexes = [
     {emailId: 1},
