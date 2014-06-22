@@ -1,19 +1,14 @@
-#NodeConverter
+#NodeTube
 ---
 
-*Fiddling* with `video` conversions and `frame grabbing` using `ffmpeg` library
+A *Video* sharing, streaming, social platform.
 
-
-##Main App
-
->Main App currently will be focused on basic **video uploading** and `conversions`, and `frame grabbing`
-
-
-##Admin App
-
-> Admin app will be used to configure and manage the `Data` and *tweak* the settings
-
-Currently it will be managing the **Users**, **Media** and basic **Settings**
+>Main Features
+1. User can `upload`, `convert` videos, `tag` them
+2. Create `channels` for people to `subscribe`
+3. **Engage**, add `comments`, `vote` on videos
+4. **Download** videos made available by Owner
+5. Capture **screenshots** of videos while watching
 
 
 
