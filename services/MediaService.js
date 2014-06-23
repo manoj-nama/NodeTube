@@ -57,8 +57,8 @@ exports.uploadMedia = function (file) {
 exports.convertDefaults = function (outputDir, mediaId) {
     var formats = {};
     formats["mp4"] = {audio: "libvo_aacenc", video: "mpeg4"};
-//    formats["ogg"] = {audio: "libvorbis", video: "libtheora"};
-//    formats["webm"] = {audio: "libvorbis", video: "libvpx"};
+    formats["ogg"] = {audio: "libvorbis", video: "libtheora"};
+    formats["webm"] = {audio: "libvorbis", video: "libvpx"};
     var tasks = [];
     for(var key in formats) {
         if(formats.hasOwnProperty(key)) {
@@ -70,21 +70,32 @@ exports.convertDefaults = function (outputDir, mediaId) {
                     options["videoCodec"] = formats[key].video;
                     options["audioCodec"] = formats[key].audio;
                     options["toFormat"] = key;
+
+                    //save initial batch of pending conversions
+                    Media.update({mediaId: mediaId}, {
+                        $push: {
+                            conversions: {
+                                format: options.toFormat,
+                                timestampAdded: +new Date()
+                            }
+                        }
+                    }, function (err, updateCount) {
+                        if(err) {
+                            console.log("Error adding conversion to DB", err);
+                        } else {
+                            console.log("Added pending conversion to DB for media", mediaId, options.toFormat);
+                        }
+                    });
+
                     ConversionService.convert(options)
                         .on(events.DONE, function (resp) {
                             console.log("CONVERSION SUCCESSFULL", mediaId, resp);
-                            Media.update({mediaId: mediaId}, {"$push": {}}, function (err, updateCount) {
-                                if(err) {
-                                    console.log("Error updating conversion data");
-                                }
-                                cb(null, {
-                                    format: options.toFormat,
-                                    mediaId: mediaId,
-                                    timestampConverted: +new Date(),
-                                    status: "complete"
-                                });
+                            globalEvent.emit("ConversionFinished", mediaId, "auto", key);
+                            cb(null, {
+                                format: options.toFormat,
+                                timestampConverted: +new Date(),
+                                status: "complete"
                             });
-
                         })
                         .on(events.ERROR, function (err) {
                             console.log("ERROR WHILE CONVERSION", mediaId, err);
@@ -95,7 +106,7 @@ exports.convertDefaults = function (outputDir, mediaId) {
         }
     }
 
-    async.series(tasks, function (err, resp) {
+    async.parallel(tasks, function (err, resp) {
         if(err) {
             console.log("----------------------------------------------------------");
             console.log("DEFAULT CONVERSION ABORTED");
@@ -106,13 +117,6 @@ exports.convertDefaults = function (outputDir, mediaId) {
             console.log("DEFAULT CONVERSION FINISHED");
             console.log(resp);
             console.log("----------------------------------------------------------");
-            Media.update({mediaId: mediaId}, {"$pushAll": {conversions: resp}}, function (err, count) {
-                if(err) {
-                    console.log("Error updating media conversion entries.");
-                } else {
-                    console.log("Successfully Added conversion entries for media", mediaId);
-                }
-            });
         }
     });
 };

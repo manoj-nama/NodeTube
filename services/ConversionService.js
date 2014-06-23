@@ -3,7 +3,6 @@ var crypto = require('crypto');
 
 exports.convert = function (options) {
 	var emitter = this;
-	var metaData = ffmpeg.Metadata;
 	var inputFile = options.inputFile;
     var outputFileName = options.outputFileName;
 

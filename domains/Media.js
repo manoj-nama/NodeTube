@@ -8,7 +8,6 @@ exports.schema = {
 	},
 	conversions: [{
 		format: String,
-		mediaId: String,
         conversionType: {type: String, default: "auto"},
         timestampAdded: Number,
         timestampConverted: Number,
