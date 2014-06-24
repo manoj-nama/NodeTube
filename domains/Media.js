@@ -6,7 +6,9 @@ exports.schema = {
 		title: String,
 		status: {type: String, default: "public"}
 	},
-    tags: [],
+    tags: Array,
+    upvotes: Array,
+    downvotes: Array,
 	conversions: [{
 		format: String,
         conversionType: {type: String, default: "auto"},
