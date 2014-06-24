@@ -17,7 +17,6 @@ exports.convert = function (options) {
 		var progressObj = {};
 
 		ff.withSize(convertedSize || size)
-		.withVideoBitrate(data.streams[0].bit_rate)
 		.withVideoCodec(options.videoCodec || 'mpeg4')
 		.withAudioCodec(options.audioCodec || 'libvo_aacenc')
 		.toFormat(format)
