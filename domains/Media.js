@@ -9,7 +9,15 @@ exports.schema = {
     tags: Array,
     upvotes: Array,
     downvotes: Array,
-	conversions: [{
+    reportedBy: Array,
+    comments: [{
+        userId: String,
+        timestampAdded: Number,
+        status: String,
+        message: String,
+        reportedBy: Array
+    }],
+    conversions: [{
 		format: String,
         conversionType: {type: String, default: "auto"},
         timestampAdded: Number,
