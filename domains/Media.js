@@ -18,5 +18,6 @@ exports.schema = {
 
 exports.indexes = [
     {userId: 1},
-    {mediaId: 1}
+    {mediaId: 1},
+    {tags: 1}
 ];
