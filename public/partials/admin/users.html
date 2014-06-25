@@ -5,7 +5,11 @@
 
     <div class="settings media-list">
         <div class="setting-item" data-ng-repeat="user in users">
-            <span>{{$index + 1}}</span>: <span>{{user.emailId}}</span> <span>{{user.name.alias}}</span> <br>
+            <div class="row">
+                <div class="column column1 tar">{{$index + 1}}</div>
+                <div class="column column4 cap"><a href="javascript:void(0)">{{user.name.alias}}</a></div>
+                <div class="column column4">{{user.emailId}}</div>
+            </div>
         </div>
     </div>
 </div>
