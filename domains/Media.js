@@ -8,7 +8,9 @@ exports.schema = {
 	},
     tags: Array,
     upvotes: Array,
+    upvotesCount: Number,
     downvotes: Array,
+    downvotesCount: Number,
     reportedBy: Array,
     comments: [{
         userId: String,
@@ -29,5 +31,6 @@ exports.schema = {
 exports.indexes = [
     {userId: 1},
     {mediaId: 1},
-    {tags: 1}
+    {tags: 1},
+    {upvotesCount: 1}
 ];
