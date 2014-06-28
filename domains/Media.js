@@ -16,6 +16,7 @@ exports.schema = {
         userId: String,
         timestampAdded: Number,
         status: String,
+        timemark: {type: Number, default: -1},
         message: String,
         reportedBy: Array
     }],
