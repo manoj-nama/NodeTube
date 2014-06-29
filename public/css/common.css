@@ -41,6 +41,7 @@ h1, h2, h3, h4, h5, h6 { font-family: 'Lato', sans-serif; font-weight: 300; }
 header a { color: #ccc; }
 header h1 { font-weight: 400; text-align: center; color: #ccc;}
 header h1 span.logo { transition: all 0.5s; font-weight: 400; }
+header h1 img.main-logo {height: 23px; margin-right: 5px;}
 header h1 span.logo:hover { color: #333; }
 header h1 span.glyphicon {
 	float: right; color: #aaa;
