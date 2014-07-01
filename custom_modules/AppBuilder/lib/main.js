@@ -112,6 +112,62 @@ exports.apiHelperToolInjectionMiddleware = function (req, res, next) {
     next();
 };
 
+//Register the health of cluster worker in db
+exports.registerClusterWorker = function () {
+    setInterval((function (fn) {
+        fn();
+        return fn;
+    })(function () {
+        var os = require("os");
+        var details = {
+            workerId: _workerId,
+            environment: __appEnv,
+            processName: process.title,
+            versions: process.versions,
+            architecture: process.arch,
+            platform: process.platform,
+            environmentVariables: process.env,
+            pid: process.pid,
+            features: process.features,
+            debugPort: process.debugPort,
+            listeningPort: _app.get('port'),
+            nodeFilePath: process.execPath,
+            processConfig: process.config,
+            hostname: os.hostname(),
+            uptime: os.uptime(),
+            ram: {
+                free: os.freemem(),
+                total: os.totalmem()
+            },
+            cpus: os.cpus(),
+            osType: {
+                name: os.type(),
+                release: os.release(),
+                arch: os.arch()
+            },
+            networkInterfaces: os.networkInterfaces(),
+            tempDir: os.tmpDir(),
+            updated: new Date().getTime()
+        };
+        details = JSON.parse(JSON.stringify(details)); //sanitize
+        ClusterWorker.update({workerId: _workerId}, {$set: details}, {upsert: true}, function (err) {
+            if (err) log.error(err);
+        });
+        try {
+            ClusterWorker.find({updated: {$lt: (new Date().getTime() - (1000 * 40))}}, function (err, objList) {
+                objList.forEach(function (obj) {
+                    ClusterWorker.remove({_id: obj._id}, function (err) {
+                        if (err) log.error(err);
+                        else globalEvent.emit("OnClusterWorkerFoundInactive", obj);
+                    });
+                });
+            });
+        } catch (c) {
+            log.error(c);
+        }
+    }), 1000 * 30);
+};
+
 
 //Add a emitter transform for functions.
 Function.prototype.toEmitter = function () {
