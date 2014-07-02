@@ -200,3 +200,14 @@ span.loader.right { float: right; }
 .pgress {
 	transition: width 0.3s; height: 100%; border-bottom: 4px solid #09f;
 }
+
+.other-btn {
+    display: inline-block;
+    padding: 10px 15px;
+    font-family: 'Oswald', sans-serif;
+    color: #fff;
+    background-color: #09f;
+}
+.other-btn.disabled {
+    background-color: #ddd;
+}

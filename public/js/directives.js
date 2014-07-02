@@ -23,9 +23,10 @@ angular.module('VideoApp.directives', []).
 				element.on("timeupdate", function (e) {
                     var duration = this.duration;
                     var currentTime = this.currentTime;
+                    var isPaused = this.paused;
 					scope.$apply(function () {
                          var parseFn = scope.$eval(attrs.updateFn);
-                        parseFn(currentTime, duration);
+                        parseFn(currentTime, duration, isPaused);
                     });
 				});
 			}

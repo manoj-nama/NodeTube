@@ -4,4 +4,10 @@
         <source data-ng-src="{{mediaStreamUrl}}" type="video/mp4"/>
 		<source data-ng-src="{{mediaStreamUrlOgg}}" type="video/ogg"/>
 	</video>
+
+</div>
+
+<div class="capture">
+    <div class="timestamp">{{currentVideo.currentTime | number : 2}}</div>
+    <a class="other-btn disabled" data-ng-class="{disabled: !currentVideo.isPaused}" href="javascript:void(0)">Grab screenshot</a>
 </div>
