@@ -21,8 +21,12 @@ angular.module('VideoApp.directives', []).
 			restrict: "A",
 			link: function (scope, element, attrs) {
 				element.on("timeupdate", function (e) {
-					var parseFn = $parse(attrs.updateFn);
-					parseFn(this.currentTime, this.duration);
+                    var duration = this.duration;
+                    var currentTime = this.currentTime;
+					scope.$apply(function () {
+                         var parseFn = scope.$eval(attrs.updateFn);
+                        parseFn(currentTime, duration);
+                    });
 				});
 			}
 		};

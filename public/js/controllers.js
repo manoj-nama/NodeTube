@@ -70,8 +70,9 @@ function VideoConfigController ($scope, $location, $rootScope, $routeParams) {
 	$scope.mediaStreamUrlWebM = "/media/stream/webm/" + $scope.media;
 	$scope.mediaStreamUrlOgg = "/media/stream/ogg/" + $scope.media;
 
-	$scope.videoTimeCapture = function (currentTime, duration) {
+	$scope.videoTimerUpdate = function (currentTime, duration) {
 		$scope.currentVideo = {currentTime: currentTime, duration: duration};
+        console.log($scope.currentVideo);
 	};
 }
 
