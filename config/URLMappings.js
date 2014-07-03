@@ -27,6 +27,7 @@ exports.addRoutes = function (app) {
     app.post("/media/list", controllers.MediaController.list);
     app.get("/media/:mediaId", controllers.MediaController.get);
     app.delete("/media/:mediaId", controllers.MediaController.delete);
+    app.post("/media/cover/generate", controllers.MediaController.generateSnap);
 
     //USERS
     app.get("/users/:userId", controllers.UserController.get);

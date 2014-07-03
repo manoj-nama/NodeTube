@@ -5,6 +5,11 @@ var UtilController = require("../controllers/UtilController");
 var extend = require("extend");
 var async = require("async");
 
+
+exports.getSnapshots = function (options) {
+//    var mediaPath = _appBaseDir + _config.conversion.mediaPath;
+};
+
 exports.uploadMedia = function (file) {
 	var emitter = this;
 	var mediaPath = _appBaseDir + _config.conversion.mediaPath;

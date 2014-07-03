@@ -10,7 +10,18 @@ exports.uploadMedia = function (req, res) {
 			res.sendSuccessResponse(resp);
 			req.files = {};
 		});
-}
+};
+
+exports.generateSnap = function (req, res) {
+    var options = req.body.options;
+    MediaService.getSnapshots(options)
+        .on(events.ERROR, function (err) {
+            res.sendErrorResponse(err);
+        })
+        .on(events.DONE, function (resp) {
+            res.sendSuccessResponse(resp);
+        });
+};
 
 exports.cover = function (req, res) {
 	res.sendfile(_appBaseDir + _config.conversion.mediaPath + req.params.id + "/" + req.params.id + "_cover.jpg");
