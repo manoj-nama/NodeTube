@@ -7,8 +7,55 @@ var async = require("async");
 
 
 exports.getSnapshots = function (options) {
-//    var mediaPath = _appBaseDir + _config.conversion.mediaPath;
-};
+    var mediaPath = UtilController.getMediaPathByMediaId(options.mediaId);
+    var timeStamp = +new Date();
+    var snapshotOptions = {
+        inputFile: mediaPath.original,
+        count: 1,
+        timemarks: [options.timemarks],
+        outputFileNaming: options.mediaId + "_" + timeStamp,
+        outputDir: mediaPath.directory,
+        size: "480x?"
+    };
+
+    Media.findOne({mediaId: options.mediaId, "snapshots.timemarks": options.timemarks}, {"snapshots.$": 1}, function (err, resp) {
+        if(err) {
+            emitter.emit(events.ERROR, "Error during snapshot find");
+        } else if(resp) {
+            Media.update({
+                mediaId: options.mediaId,
+                "snapshots.timemarks": options.timemarks
+            }, {
+                $inc: {"snapshots.$.creationRequestCount": 1}
+            }, function () { });
+            emitter.emit(events.DONE, resp);
+        } else {
+            ConversionService.getSnapshots(snapshotOptions)
+                .on(events.DONE, function (snaps) {
+                    Media.update({mediaId: options.mediaId}, {
+                        $push: {
+                            snapshots: {
+                                timestamp: timeStamp,
+                                timeMark: snapshotOptions.timemarks,
+                                snapshotFilename: snapshotOptions.outputFileNaming,
+                                creationRequestCount: 1
+                            }
+                        }
+                    }, function (err, count) { });
+                    emitter.emit(events.DONE, {
+                        timestamp: timeStamp,
+                        timeMark: snapshotOptions.timemarks,
+                        snapshotFilename: snapshotOptions.outputFileNaming,
+                        creationRequestCount: 1
+                    });
+                })
+                .on(events.ERROR, function(err) {
+                    emitter.emit(events.ERROR, "Cannot get Snaps");
+                });
+        }
+    }).toEmitter();
+
+}.toEmitter();
 
 exports.uploadMedia = function (file) {
 	var emitter = this;
