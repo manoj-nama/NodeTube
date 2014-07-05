@@ -20,6 +20,12 @@ exports.schema = {
         message: String,
         reportedBy: Array
     }],
+    snapshots: [{
+        timestampAdded: Number,
+        timeMark: Number,
+        snapshotFilename: String,
+        creationRequestCount: Number //How many times this snapshot is requested to be created
+    }],
     conversions: [{
 		format: String,
         conversionType: {type: String, default: "auto"},
