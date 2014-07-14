@@ -24,7 +24,24 @@
     "type": "git",
     "url": "git://github.com/manoj-nama/NodeTube.git"
   },
-  "author": "Manoj Nama",
+  "author": {
+    "name": "Manoj Nama",
+    "email": "manoj.nama@outlook.com"
+  },
+  "contributors": [
+    {
+      "name": "Manoj Nama",
+      "email": "manoj.nama@outlook.com"
+    },
+    {
+      "name": "Sahil Chitkara",
+      "email": "sahil.chitkara91@gmail.com"
+    },
+    {
+      "name": "Sakshi Tyagi",
+      "email": "tyagi.sakshi09@gmail.com"
+    }
+  ],
   "license": "ISC",
   "bugs": {
     "url": "https://github.com/manoj-nama/NodeTube/issues"
