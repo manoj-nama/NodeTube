@@ -5,7 +5,7 @@
 
         "dataSource": {
             "mongo": {
-                "url": "mongodb://localhost:27017/node-converter",
+                "url": "mongodb://nodetube:nodetube@ds059509.mongolab.com:59509/node-tube",
                 "poolSize": "100",
                 "ignoreConnectionError": false
             }
