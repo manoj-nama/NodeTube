@@ -5,7 +5,7 @@
 
         "dataSource": {
             "mongo": {
-                "url": "mongodb://nodetube:nodetube@ds059509.mongolab.com:59509/node-tube",
+                "url": "mongodb://localhost:27017/node-converter",
                 "poolSize": "100",
                 "ignoreConnectionError": false
             }
@@ -14,13 +14,41 @@
     "development": {
         "port": 8888,
         "showHidden": true,
-        "serverUrl": "http://localhost:8888"
+        "serverUrl": "http://localhost:8888",
+        "dataSource": {
+            "mongo": {
+                "url": "mongodb://localhost:27017/node-converter",
+                "poolSize": "100",
+                "ignoreConnectionError": false
+            }
+        }
     },
     "production": {
+        "dataSource": {
+            "mongo": {
+                "url": "mongodb://nodetube:nodetube@ds059509.mongolab.com:59509/node-tube",
+                "poolSize": "100",
+                "ignoreConnectionError": false
+            }
+        }
     },
     "test": {
+        "dataSource": {
+            "mongo": {
+                "url": "mongodb://nodetube:nodetube@ds059509.mongolab.com:59509/node-tube",
+                "poolSize": "100",
+                "ignoreConnectionError": false
+            }
+        }
     },
     "qa": {
+        "dataSource": {
+            "mongo": {
+                "url": "mongodb://nodetube:nodetube@ds059509.mongolab.com:59509/node-tube",
+                "poolSize": "100",
+                "ignoreConnectionError": false
+            }
+        }
     }
 }
 
